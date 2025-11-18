@@ -95,10 +95,39 @@
             scroll-behavior: smooth;
         }
 
+        .logo-bar {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1001;
+        }
+
+        .logo-bar img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-bar {
+                gap: 15px;
+                padding: 15px;
+            }
+            .logo-bar img {
+                height: 35px;
+            }
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--rasta-red) 0%, var(--blue) 50%, var(--rasta-green) 100%);
+            background: var(--red);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -128,11 +157,10 @@
             font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
             font-size: clamp(60px, 10vw, 140px);
             font-weight: 900;
-            color: var(--rasta-yellow);
-            text-shadow: 5px 5px 0px rgba(0,0,0,0.5), 0 0 40px rgba(255, 199, 0, 0.5);
+            color: white;
+            text-shadow: 5px 5px 0px rgba(0,0,0,1);
             margin-bottom: 20px;
             letter-spacing: 5px;
-            animation: glow 2s ease-in-out infinite alternate;
         }
 
         @keyframes glow {
@@ -145,16 +173,16 @@
             color: white;
             font-weight: 700;
             margin-bottom: 30px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            text-shadow: 4px 4px 0px rgba(0,0,0,1);
         }
 
         .hero-tagline {
             font-size: clamp(20px, 3vw, 32px);
-            color: var(--rasta-yellow);
+            color: white;
             font-style: italic;
             max-width: 900px;
             margin-bottom: 50px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 3px 3px 0px rgba(0,0,0,1);
         }
 
         .scroll-indicator {
@@ -755,8 +783,15 @@
 </head>
 <body>
 
+    <div class="logo-bar">
+        <img src="Logos/KYC-white.png" alt="KYC Logo" style="background: #2a2a2a; padding: 10px; border-radius: 8px;" onerror="this.style.display='none'">
+        <img src="Logos/logo%20black.png" alt="SDI Logo" onerror="this.style.display='none'">
+        <img src="Logos/logo_KYCTV@2x.png" alt="KYC.TV Logo" onerror="this.style.display='none'">
+    </div>
+
     <!-- HERO -->
     <div class="hero">
+        <div style="font-size: clamp(24px, 4vw, 40px); color: white; margin-bottom: 20px; font-weight: 700; text-shadow: 3px 3px 0px rgba(0,0,0,1);">7 Cities, 1 Story</div>
         <div class="hero-title">DATA NEWS LIVE</div>
         <div class="hero-subtitle">Youth Turn Numbers Into Change</div>
         <div class="hero-tagline">"Information is Power (If You Know How To Use It)"</div>
@@ -765,6 +800,7 @@
 
     <!-- NAV -->
     <nav class="nav" id="nav">
+        <a href="index.html" class="nav-link" style="background: var(--rasta-yellow); color: var(--blue); font-weight: 900;">🏠 HOME</a>
         <a href="#card1" class="nav-link">💰 POVERTY</a>
         <a href="#card2" class="nav-link">👊 WOMEN</a>
         <a href="#card3" class="nav-link">👻 INVISIBLE</a>
@@ -774,6 +810,36 @@
         <a href="#card7" class="nav-link">🎓 DIPLOMA</a>
         <a href="#card8" class="nav-link">🏡 LAND</a>
     </nav>
+
+    <!-- THREE DATA TYPES INTRO -->
+    <section style="background: linear-gradient(135deg, var(--rasta-yellow) 0%, var(--cream) 100%); padding: 80px 40px; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="font-size: clamp(40px, 7vw, 72px); font-weight: 900; color: var(--blue); margin-bottom: 30px; text-shadow: 2px 2px 0px white;">📊 Three Data Types Model</h2>
+            <p style="font-size: clamp(20px, 3vw, 32px); line-height: 1.8; margin-bottom: 50px; color: #2a2a2a;">
+                Each card below demonstrates how to combine <strong style="color: var(--blue);">Hard Data</strong> (statistics), <strong style="color: var(--green);">Lived Data</strong> (experiences), and <strong style="color: var(--red);">Missing Data</strong> (gaps to investigate) into compelling stories for change.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px;">
+                <div style="background: white; border: 4px solid var(--blue); border-radius: 20px; padding: 30px;">
+                    <div style="font-size: 60px; margin-bottom: 15px;">📊</div>
+                    <h3 style="font-size: clamp(24px, 4vw, 32px); font-weight: 900; color: var(--blue); margin-bottom: 15px;">Hard Data</h3>
+                    <p style="font-size: clamp(16px, 2.5vw, 20px); line-height: 1.7;">Statistics & numbers that get attention from decision-makers</p>
+                </div>
+                <div style="background: white; border: 4px solid var(--green); border-radius: 20px; padding: 30px;">
+                    <div style="font-size: 60px; margin-bottom: 15px;">💬</div>
+                    <h3 style="font-size: clamp(24px, 4vw, 32px); font-weight: 900; color: var(--green); margin-bottom: 15px;">Lived Data</h3>
+                    <p style="font-size: clamp(16px, 2.5vw, 20px); line-height: 1.7;">Personal experiences that make it human and authentic</p>
+                </div>
+                <div style="background: white; border: 4px solid var(--red); border-radius: 20px; padding: 30px;">
+                    <div style="font-size: 60px; margin-bottom: 15px;">❓</div>
+                    <h3 style="font-size: clamp(24px, 4vw, 32px); font-weight: 900; color: var(--red); margin-bottom: 15px;">Missing Data</h3>
+                    <p style="font-size: clamp(16px, 2.5vw, 20px); line-height: 1.7;">Gaps in knowledge that show where action is needed</p>
+                </div>
+            </div>
+            <p style="font-size: clamp(18px, 3vw, 28px); margin-top: 50px; font-style: italic; color: var(--blue);">
+                <strong>👇 Explore the 8 cards below to see this model in action</strong>
+            </p>
+        </div>
+    </section>
 
     <!-- CARD 1: POVERTY PENALTY -->
     <section class="card-section" id="card1">

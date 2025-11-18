@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Overview - 7 Cities, 1 Story</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#FFD60A',
+                primaryTextColor: '#2a2a2a',
+                primaryBorderColor: '#228B22',
+                secondaryColor: '#4061AA',
+                tertiaryColor: '#228B22',
+                lineColor: '#BB2522',
+                fontSize: '18px'
+            }
+        });
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #BB2522;
+            --blue: #4061AA;
+            --yellow: #FFD60A;
+            --green: #228B22;
+            --cream: #FFF8E7;
+            --grey: #4d4d4d;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: #2a2a2a;
+            line-height: 1.7;
+        }
+
+        .logo-bar {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo-bar img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-bar {
+                gap: 15px;
+                padding: 15px;
+            }
+            .logo-bar img {
+                height: 35px;
+            }
+        }
+
+        .header {
+            background: var(--red);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-title {
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            color: white;
+            text-shadow: 4px 4px 0px rgba(0,0,0,1);
+            margin-bottom: 20px;
+        }
+
+        .header-subtitle {
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 700;
+            color: white;
+            text-shadow: 3px 3px 0px rgba(0,0,0,1);
+        }
+
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: var(--blue);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+            border: 2px solid var(--yellow);
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            background: var(--yellow);
+            color: var(--blue);
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px var(--yellow);
+        }
+
+        .vision-box {
+            background: linear-gradient(135deg, var(--red) 0%, var(--blue) 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 25px;
+            border: 6px solid var(--yellow);
+            box-shadow: 15px 15px 0px var(--green);
+            font-size: clamp(20px, 3vw, 28px);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .goal-card {
+            background: white;
+            border: 5px solid var(--blue);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 10px 10px 0px var(--yellow);
+            transition: all 0.3s;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 15px 15px 0px var(--red);
+        }
+
+        .goal-number {
+            font-size: clamp(60px, 10vw, 80px);
+            font-weight: 900;
+            color: var(--yellow);
+            text-shadow: 3px 3px 0px var(--blue);
+            margin-bottom: 15px;
+        }
+
+        .goal-title {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 15px;
+        }
+
+        .goal-desc {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--grey);
+            line-height: 1.6;
+        }
+
+        .data-types-section {
+            background: white;
+            border: 8px solid var(--green);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 20px 20px 0px var(--blue);
+            margin: 60px 0;
+        }
+
+        .data-type-card {
+            background: var(--cream);
+            border-left: 10px solid var(--red);
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .data-type-card:hover {
+            transform: translateX(15px);
+            box-shadow: 10px 10px 0px var(--yellow);
+        }
+
+        .data-type-card h3 {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+
+        .data-type-card p {
+            font-size: clamp(18px, 3vw, 24px);
+            line-height: 1.7;
+        }
+
+        .data-type-card.hard { border-left-color: var(--blue); }
+        .data-type-card.hard h3 { color: var(--blue); }
+
+        .data-type-card.lived { border-left-color: var(--green); }
+        .data-type-card.lived h3 { color: var(--green); }
+
+        .data-type-card.missing { border-left-color: var(--red); }
+        .data-type-card.missing h3 { color: var(--red); }
+
+        .mermaid-container {
+            background: #fafafa;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 4px solid var(--grey);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, var(--yellow) 0%, var(--cream) 100%);
+            border: 4px solid var(--blue);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 15px;
+        }
+
+        .team-countries {
+            font-size: clamp(16px, 2.5vw, 20px);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-bar">
+        <img src="Logos/KYC-white.png" alt="KYC Logo" style="background: #2a2a2a; padding: 10px; border-radius: 8px;" onerror="this.style.display='none'">
+        <img src="Logos/logo%20black.png" alt="SDI Logo" onerror="this.style.display='none'">
+        <img src="Logos/logo_KYCTV@2x.png" alt="KYC.TV Logo" onerror="this.style.display='none'">
+    </div>
+    <div class="header">
+        <div class="header-title">WORKSHOP OVERVIEW</div>
+        <div class="header-subtitle">"7 Cities, 1 Story" Framework</div>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">🏠 Home</a>
+        <a href="#vision" class="nav-link">🌍 Vision</a>
+        <a href="#data-types" class="nav-link">📊 Data Types</a>
+        <a href="#goals" class="nav-link">🎯 Goals</a>
+        <a href="#teams" class="nav-link">👥 Teams</a>
+    </nav>
+
+    <div class="container">
+        <!-- VISION SECTION -->
+        <section class="section" id="vision">
+            <h2 class="section-title">Workshop Vision</h2>
+            <div class="vision-box">
+                <strong style="font-size: clamp(28px, 5vw, 42px); display: block; margin-bottom: 25px;">"7 Cities, 1 Story"</strong>
+                From Dakar to Kampala, from Freetown to Lilongwe—youth in informal settlements face similar struggles but bring unique solutions. This workshop builds ONE pan-African story from SEVEN cities' experiences, proving that across borders, our issues unite us and our creativity can change the world.
+            </div>
+
+            <p style="font-size: clamp(18px, 3vw, 24px); margin-bottom: 20px;">
+                <strong>16 Youth Activists</strong> from 7 SDI cities across Africa:
+            </p>
+            <ul style="font-size: clamp(16px, 2.5vw, 22px); line-height: 2; margin-left: 40px; margin-bottom: 40px;">
+                <li><strong>West Africa:</strong> 🇸🇳 Senegal (2), 🇸🇱 Sierra Leone (2), 🇬🇭 Ghana (2)</li>
+                <li><strong>East Africa:</strong> 🇰🇪 Kenya (4), 🇺🇬 Uganda (2)</li>
+                <li><strong>Southern Africa:</strong> 🇿🇲 Zambia (2), 🇲🇼 Malawi (2)</li>
+            </ul>
+        </section>
+
+        <!-- THREE DATA TYPES MODEL -->
+        <section class="section" id="data-types">
+            <div class="data-types-section">
+                <h2 class="section-title" style="text-align: center;">The Three Data Types Model</h2>
+                <p style="font-size: clamp(20px, 3vw, 28px); text-align: center; margin-bottom: 50px; font-style: italic;">
+                    The Foundation of Compelling Stories
+                </p>
+
+                <div class="data-type-card hard">
+                    <h3>📊 1. Hard Data</h3>
+                    <p><strong>Statistics & Numbers</strong> — Gets attention from decision-makers. The facts and figures that prove the scale of an issue. Example: "172% more for water in Nairobi slums vs. wealthy suburbs."</p>
+                </div>
+
+                <div class="data-type-card lived">
+                    <h3>💬 2. Lived Data</h3>
+                    <p><strong>Personal Experience</strong> — Makes it human and authentic. The stories, emotions, and daily realities behind the numbers. Example: "I wait 2 hours every day for the toilet, missing work and losing wages."</p>
+                </div>
+
+                <div class="data-type-card missing">
+                    <h3>❓ 3. Missing Data</h3>
+                    <p><strong>What to Investigate</strong> — Shows where action is needed. The gaps in knowledge that youth can fill through community mapping and research. Example: "Who owns the 95% of land that 60% of us don't live on?"</p>
+                </div>
+
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph LR
+    A["📊 HARD DATA<br/>Numbers Get<br/>Attention"] --> D["🎯 COMPELLING<br/>STORY"]
+    B["💬 LIVED DATA<br/>Stories Make<br/>It Human"] --> D
+    C["❓ MISSING DATA<br/>Gaps Show<br/>What to Do"] --> D
+
+    style A fill:#4061AA,stroke:#000,stroke-width:4px,color:#fff
+    style B fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+    style C fill:#BB2522,stroke:#000,stroke-width:4px,color:#fff
+    style D fill:#FFD60A,stroke:#000,stroke-width:5px,color:#000
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKSHOP GOALS -->
+        <section class="section" id="goals">
+            <h2 class="section-title">Workshop Goals</h2>
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-number">1</div>
+                    <div class="goal-title">Immediate Connection</div>
+                    <div class="goal-desc">Bond participants across borders from the start through shared experiences and strategic team formation</div>
+                </div>
+
+                <div class="goal-card">
+                    <div class="goal-number">2</div>
+                    <div class="goal-title">Pan-African Identity</div>
+                    <div class="goal-desc">Experience being part of a continental movement, not just isolated local activists</div>
+                </div>
+
+                <div class="goal-card">
+                    <div class="goal-number">3</div>
+                    <div class="goal-title">Practical Skills</div>
+                    <div class="goal-desc">Learn creative data+story investigation techniques that work across different contexts</div>
+                </div>
+
+                <div class="goal-card">
+                    <div class="goal-number">4</div>
+                    <div class="goal-title">Sustainable Network</div>
+                    <div class="goal-desc">Leave with concrete action plans and peer accountability across 7 cities</div>
+                </div>
+
+                <div class="goal-card">
+                    <div class="goal-number">5</div>
+                    <div class="goal-title">Movement Building</div>
+                    <div class="goal-desc">Strengthen SDI network cohesion and create next-gen leaders</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM STRUCTURE -->
+        <section class="section" id="teams">
+            <h2 class="section-title">Strategic Team Formation</h2>
+            <p style="font-size: clamp(18px, 3vw, 24px); margin-bottom: 30px;">
+                4 Pre-assigned teams with NO country duplicates for maximum cross-pollination:
+            </p>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-name">🌟 Team 1: Network Builders</div>
+                    <div class="team-countries">
+                        🇸🇳 Senegal<br>
+                        🇰🇪 Kenya<br>
+                        🇿🇲 Zambia<br>
+                        🇬🇭 Ghana
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-name">🗣️ Team 2: Pan-African Voices</div>
+                    <div class="team-countries">
+                        🇸🇱 Sierra Leone<br>
+                        🇰🇪 Kenya<br>
+                        🇲🇼 Malawi<br>
+                        🇺🇬 Uganda
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-name">⚡ Team 3: Change Makers</div>
+                    <div class="team-countries">
+                        🇸🇳 Senegal<br>
+                        🇰🇪 Kenya<br>
+                        🇿🇲 Zambia<br>
+                        🇺🇬 Uganda
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-name">✊ Team 4: Unity Squad</div>
+                    <div class="team-countries">
+                        🇸🇱 Sierra Leone<br>
+                        🇰🇪 Kenya<br>
+                        🇲🇼 Malawi<br>
+                        🇬🇭 Ghana
+                    </div>
+                </div>
+            </div>
+
+            <p style="font-size: clamp(16px, 2.5vw, 20px); margin-top: 40px; font-style: italic; text-align: center;">
+                Each team has 4 different countries, at least 2 different regions, and a mix of Anglophone and Francophone participants
+            </p>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Guide - 7 Cities, 1 Story</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#FFD60A',
+                primaryTextColor: '#2a2a2a',
+                primaryBorderColor: '#228B22',
+                secondaryColor: '#4061AA',
+                fontSize: '16px'
+            },
+            gantt: {
+                titleTopMargin: 25,
+                barHeight: 40,
+                barGap: 8,
+                topPadding: 50,
+                leftPadding: 120,
+                gridLineStartPadding: 35,
+                fontSize: 14,
+                sectionFontSize: 16,
+                numberSectionStyles: 4
+            }
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #BB2522;
+            --blue: #4061AA;
+            --yellow: #FFD60A;
+            --green: #228B22;
+            --cream: #FFF8E7;
+            --grey: #4d4d4d;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: #2a2a2a;
+            line-height: 1.7;
+        }
+
+        .logo-bar {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo-bar img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-bar {
+                gap: 15px;
+                padding: 15px;
+            }
+            .logo-bar img {
+                height: 35px;
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--red) 0%, var(--blue) 50%, var(--green) 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header-title {
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            color: var(--yellow);
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: var(--blue);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+            border: 2px solid var(--yellow);
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            background: var(--yellow);
+            color: var(--blue);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .phase-section {
+            background: white;
+            border: 6px solid var(--blue);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 15px 15px 0px var(--yellow);
+        }
+
+        .phase-number {
+            font-size: clamp(80px, 15vw, 120px);
+            font-weight: 900;
+            color: var(--yellow);
+            text-shadow: 4px 4px 0px var(--blue);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .phase-title {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 15px;
+        }
+
+        .phase-time {
+            font-size: clamp(20px, 3vw, 28px);
+            color: var(--red);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .phase-desc {
+            font-size: clamp(18px, 3vw, 24px);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .segment-box {
+            background: var(--cream);
+            border-left: 8px solid var(--green);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .segment-box h4 {
+            font-size: clamp(22px, 4vw, 32px);
+            font-weight: 900;
+            color: var(--green);
+            margin-bottom: 15px;
+        }
+
+        .worksheet-section {
+            background: linear-gradient(135deg, var(--yellow) 0%, var(--cream) 100%);
+            border: 6px solid var(--green);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 15px 15px 0px var(--blue);
+        }
+
+        .worksheet-title {
+            font-size: clamp(36px, 6vw, 52px);
+            font-weight: 900;
+            color: var(--blue);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .worksheet-card {
+            background: white;
+            border: 4px solid var(--blue);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 25px 0;
+        }
+
+        .worksheet-card h3 {
+            font-size: clamp(26px, 5vw, 36px);
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+
+        .worksheet-card ul {
+            margin-left: 30px;
+            font-size: clamp(16px, 2.5vw, 20px);
+            line-height: 2;
+        }
+
+        .mermaid-container {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 4px solid var(--grey);
+            overflow-x: auto;
+        }
+
+        .timeline-section {
+            margin: 60px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            .phase-section {
+                padding: 30px 20px;
+            }
+        }
+
+        @media print {
+            .nav-bar, .header {
+                display: none;
+            }
+            .worksheet-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-bar">
+        <img src="Logos/KYC-white.png" alt="KYC Logo" style="background: #2a2a2a; padding: 10px; border-radius: 8px;" onerror="this.style.display='none'">
+        <img src="Logos/logo%20black.png" alt="SDI Logo" onerror="this.style.display='none'">
+        <img src="Logos/logo_KYCTV@2x.png" alt="KYC.TV Logo" onerror="this.style.display='none'">
+    </div>
+    <div class="header">
+        <div class="header-title">ACTIVITY GUIDE</div>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">🏠 Home</a>
+        <a href="#timeline" class="nav-link">⏰ Timeline</a>
+        <a href="#phase0" class="nav-link">Phase 0</a>
+        <a href="#phase1" class="nav-link">Phase 1</a>
+        <a href="#phase2" class="nav-link">Phase 2</a>
+        <a href="#phase3" class="nav-link">Phase 3</a>
+        <a href="#phase4" class="nav-link">Phase 4</a>
+        <a href="#worksheets" class="nav-link">📋 Worksheets</a>
+    </nav>
+
+    <div class="container">
+        <!-- TIMELINE -->
+        <section class="timeline-section" id="timeline">
+            <h2 style="font-size: clamp(40px, 7vw, 64px); font-weight: 900; color: var(--blue); text-align: center; margin-bottom: 40px;">Workshop Timeline</h2>
+            <div class="mermaid-container">
+                <div class="mermaid">
+gantt
+    title 7 Cities, 1 Story Workshop Flow
+    dateFormat HH:mm
+    axisFormat %H:%M
+
+    section Opening
+    Opening Circle           :done, p0, 09:00, 10m
+
+    section Formation
+    Team Formation           :active, p1a, 09:10, 8m
+    Draw Cards & Explore     :p1b, 09:18, 12m
+    Choose Format            :p1c, 09:30, 5m
+
+    section Development
+    Expert Rotations         :p2a, 09:35, 40m
+    Independent Practice     :p2b, 10:15, 10m
+
+    section Showcase
+    Performances             :p3a, 10:25, 20m
+    Peer Feedback            :p3b, 10:45, 10m
+
+    section Practice
+    Country Planning         :p4a, 10:55, 15m
+    Expert Consultations     :p4b, 11:10, 7m
+    Network Gallery          :p4c, 11:17, 8m
+    Network Commitments      :p4d, 11:25, 3m
+
+    section Closing
+    Closing Circle           :p5, 11:28, 10m
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 0 -->
+        <section class="phase-section" id="phase0">
+            <div class="phase-number">0</div>
+            <div class="phase-title">Opening Circle</div>
+            <div class="phase-time">⏰ 10 minutes</div>
+            <div class="phase-desc">
+                Welcome participants and frame the workshop as a continental connection, not just a training session. Emphasize that they're building ONE pan-African story from SEVEN cities.
+            </div>
+            <div class="segment-box">
+                <h4>🎯 "Find Your Common Ground" Mixer</h4>
+                <p><strong>3 rounds of connection:</strong></p>
+                <ul style="margin-left: 30px; margin-top: 15px; line-height: 2;">
+                    <li><strong>Round 1:</strong> Find someone from a different region who faces the same issue you do</li>
+                    <li><strong>Round 2:</strong> Find someone who uses the same solution approach you do</li>
+                    <li><strong>Round 3:</strong> Find someone whose city has something yours needs</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PHASE 1 -->
+        <section class="phase-section" id="phase1">
+            <div class="phase-number">1</div>
+            <div class="phase-title">Team Formation & Creative Brief</div>
+            <div class="phase-time">⏰ 25 minutes</div>
+
+            <div class="segment-box">
+                <h4>Segment A: Strategic Team Formation (8 min)</h4>
+                <p>Reveal pre-assigned teams with NO country duplicates. Each team has 4 different countries, at least 2 different regions, mix of Anglophone/Francophone participants.</p>
+            </div>
+
+            <div class="segment-box">
+                <h4>Segment B: Draw Data Cards & Explore Issues (12 min)</h4>
+                <p>Teams draw one of 8 data cards (Poverty Penalty, Women's Power, Invisible Workforce, Sanitation, Landlords, Jobs, Education, Land Rights). Use Cross-City Questions Framework:</p>
+                <ul style="margin-left: 30px; margin-top: 15px; line-height: 2;">
+                    <li>What's the HARD DATA on this issue across our cities?</li>
+                    <li>What's our LIVED DATA from each city?</li>
+                    <li>What's the MISSING DATA we need to investigate?</li>
+                    <li>What's COMMON across all our cities?</li>
+                    <li>What's DIFFERENT and why?</li>
+                </ul>
+            </div>
+
+            <div class="segment-box">
+                <h4>Segment C: Choose Creative Format (5 min)</h4>
+                <p>Teams select from 7 creative formats designed for cross-city storytelling (see Resources page for full menu).</p>
+            </div>
+        </section>
+
+        <!-- PHASE 2 -->
+        <section class="phase-section" id="phase2">
+            <div class="phase-number">2</div>
+            <div class="phase-title">Creative Development with Expert Support</div>
+            <div class="phase-time">⏰ 50 minutes</div>
+
+            <div class="segment-box">
+                <h4>Sprint 1: Expert Rotations (40 min)</h4>
+                <p>4 specialists (Media, Data, Mapping, LME) rotate between teams. Each expert spends 10 minutes with each team.</p>
+                <div class="mermaid-container" style="margin-top: 20px;">
+                    <div class="mermaid">
+gantt
+    title Expert Rotation Schedule
+    dateFormat HH:mm
+    axisFormat %H:%M
+
+    section Team 1
+    Media Expert    :t1m, 09:35, 10m
+    Data Expert     :t1d, 09:45, 10m
+    Mapping Expert  :t1map, 09:55, 10m
+    LME Expert      :t1l, 10:05, 10m
+
+    section Team 2
+    LME Expert      :t2l, 09:35, 10m
+    Media Expert    :t2m, 09:45, 10m
+    Data Expert     :t2d, 09:55, 10m
+    Mapping Expert  :t2map, 10:05, 10m
+
+    section Team 3
+    Mapping Expert  :t3map, 09:35, 10m
+    LME Expert      :t3l, 09:45, 10m
+    Media Expert    :t3m, 09:55, 10m
+    Data Expert     :t3d, 10:05, 10m
+
+    section Team 4
+    Data Expert     :t4d, 09:35, 10m
+    Mapping Expert  :t4map, 09:45, 10m
+    LME Expert      :t4l, 09:55, 10m
+    Media Expert    :t4m, 10:05, 10m
+                    </div>
+                </div>
+            </div>
+
+            <div class="segment-box">
+                <h4>Sprint 2: Independent Practice (10 min)</h4>
+                <p>Teams integrate expert advice and finalize their creative piece for presentation.</p>
+            </div>
+        </section>
+
+        <!-- PHASE 3 -->
+        <section class="phase-section" id="phase3">
+            <div class="phase-number">3</div>
+            <div class="phase-title">Creative Showcases & Peer Dialogue</div>
+            <div class="phase-time">⏰ 30 minutes</div>
+
+            <div class="segment-box">
+                <h4>Segment A: Performances (20 min)</h4>
+                <p>Each team presents their creative investigation (5 min per team). Audience members receive role cards (Pan-African Organizer, Communication Strategist, Research Coordinator, Creative Producer) to guide their feedback.</p>
+            </div>
+
+            <div class="segment-box">
+                <h4>Segment B: "Unity & Diversity" Feedback (10 min)</h4>
+                <p>Structured peer feedback using three questions:</p>
+                <ul style="margin-left: 30px; margin-top: 15px; line-height: 2;">
+                    <li><strong>UNITY:</strong> What connected the cities?</li>
+                    <li><strong>DIVERSITY:</strong> What honored differences?</li>
+                    <li><strong>POWER:</strong> What could this create?</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PHASE 4 -->
+        <section class="phase-section" id="phase4">
+            <div class="phase-number">4</div>
+            <div class="phase-title">From Performance to Practice</div>
+            <div class="phase-time">⏰ 35 minutes</div>
+
+            <div class="segment-box">
+                <h4>Segment A: Country Action Planning (15 min)</h4>
+                <p>Participants regroup by home country to create concrete next steps using the Investigation & Network Plan worksheet.</p>
+            </div>
+
+            <div class="segment-box">
+                <h4>Segment B: Expert Speed Consultations (7 min)</h4>
+                <p>Each country group gets 1 minute with each specialist for targeted support.</p>
+            </div>
+
+            <div class="segment-box">
+                <h4>Segment C: "7 Cities Network" Gallery Walk (8 min)</h4>
+                <p>Physical network mapping with colored yarn. Participants connect to cities they'll collaborate with, creating a visual web of the pan-African network.</p>
+            </div>
+
+            <div class="segment-box">
+                <h4>Segment D: Network Commitments (3 min)</h4>
+                <p>Sign the Network Pledge poster committing to stay connected and share findings.</p>
+            </div>
+        </section>
+
+        <!-- CLOSING -->
+        <section class="phase-section">
+            <div class="phase-number">✨</div>
+            <div class="phase-title">Closing Circle: "One Story, Many Voices"</div>
+            <div class="phase-time">⏰ 10 minutes</div>
+
+            <div class="segment-box">
+                <h4>Three Rounds of Sharing</h4>
+                <ul style="margin-left: 30px; margin-top: 15px; line-height: 2;">
+                    <li><strong>Round 1 - City Voices (5 min):</strong> Each country shares their commitment</li>
+                    <li><strong>Round 2 - Individual Voices (3 min):</strong> Popcorn sharing of insights</li>
+                    <li><strong>Round 3 - Specialist Voices (2 min):</strong> Experts commit to ongoing support</li>
+                </ul>
+                <p style="margin-top: 20px; font-weight: 700;">Final actions: Group photo, WhatsApp group creation, certificate distribution</p>
+            </div>
+        </section>
+
+        <!-- WORKSHEETS -->
+        <section class="worksheet-section" id="worksheets">
+            <h2 class="worksheet-title">📋 Workshop Worksheets</h2>
+
+            <div class="worksheet-card">
+                <h3>1. "7 Cities, 1 Story" Foundation Sheet</h3>
+                <p style="margin-bottom: 20px; font-size: clamp(16px, 2.5vw, 20px);">Used during Phase 1 to capture cross-city patterns</p>
+                <ul>
+                    <li>Hard Data from your card (statistics & numbers)</li>
+                    <li>Lived Data from each of the 4 cities in your team</li>
+                    <li>What's COMMON across all cities?</li>
+                    <li>What's DIFFERENT between cities and why?</li>
+                    <li>Missing Data - What do you need to investigate?</li>
+                </ul>
+            </div>
+
+            <div class="worksheet-card">
+                <h3>2. Investigation & Network Plan</h3>
+                <p style="margin-bottom: 20px; font-size: clamp(16px, 2.5vw, 20px);">Used during Phase 4 for country-level action planning</p>
+                <ul>
+                    <li>Issue being investigated</li>
+                    <li>Inspiration from other cities in the workshop</li>
+                    <li>What we already know (lived experience)</li>
+                    <li>What data already exists</li>
+                    <li>What we need to find out (missing data)</li>
+                    <li>Investigation methods (mapping, surveys, interviews, etc.)</li>
+                    <li>Creative format we'll use to tell the story</li>
+                    <li>Language(s) we'll work in</li>
+                    <li>First step when returning home</li>
+                    <li>Which cities we'll stay connected to</li>
+                    <li>How we'll share our findings (WhatsApp, KYC.TV, etc.)</li>
+                    <li>Support needed from specialists</li>
+                </ul>
+            </div>
+
+            <div class="worksheet-card">
+                <h3>3. "Unity & Diversity" Feedback Form</h3>
+                <p style="margin-bottom: 20px; font-size: clamp(16px, 2.5vw, 20px);">Used during Phase 3 for structured peer feedback</p>
+                <ul>
+                    <li><strong>UNITY:</strong> What connected the cities in this presentation?</li>
+                    <li><strong>DIVERSITY:</strong> What honored the differences between cities?</li>
+                    <li><strong>POWER:</strong> What could this investigation create if completed?</li>
+                </ul>
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; font-size: clamp(16px, 2.5vw, 20px); font-style: italic;">
+                💡 All worksheets should be available in both English and French<br>
+                Print 20 copies of Foundation Sheets | 10 large-format Investigation Plans | 4 large-format Feedback sheets
+            </p>
+        </section>
+    </div>
+</body>
+</html>

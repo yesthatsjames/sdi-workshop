@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Library - 7 Cities, 1 Story</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#FFD60A',
+                primaryTextColor: '#2a2a2a',
+                primaryBorderColor: '#228B22',
+                secondaryColor: '#4061AA',
+                tertiaryColor: '#228B22',
+                lineColor: '#BB2522',
+                fontSize: '16px'
+            }
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #BB2522;
+            --blue: #4061AA;
+            --yellow: #FFD60A;
+            --green: #228B22;
+            --cream: #FFF8E7;
+            --grey: #4d4d4d;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: #2a2a2a;
+            line-height: 1.7;
+        }
+
+        .logo-bar {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo-bar img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-bar {
+                gap: 15px;
+                padding: 15px;
+            }
+            .logo-bar img {
+                height: 35px;
+            }
+        }
+
+        .header {
+            background: var(--red);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header-title {
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            color: white;
+            text-shadow: 4px 4px 0px rgba(0,0,0,1);
+        }
+
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: var(--blue);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+            border: 2px solid var(--yellow);
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            background: var(--yellow);
+            color: var(--blue);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px var(--yellow);
+        }
+
+        .diagram-card {
+            background: white;
+            border: 6px solid var(--blue);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: 15px 15px 0px var(--yellow);
+        }
+
+        .diagram-card h3 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .mermaid-container {
+            background: #fafafa;
+            padding: 40px;
+            border-radius: 20px;
+            border: 4px solid var(--grey);
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+
+        .formats-section {
+            background: linear-gradient(135deg, var(--yellow) 0%, var(--cream) 100%);
+            border: 6px solid var(--green);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 15px 15px 0px var(--blue);
+        }
+
+        .format-card {
+            background: white;
+            border: 4px solid var(--blue);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            transition: all 0.3s;
+        }
+
+        .format-card:hover {
+            transform: translateX(10px);
+            box-shadow: 10px 10px 0px var(--red);
+        }
+
+        .format-card h4 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 15px;
+        }
+
+        .format-rating {
+            font-size: clamp(28px, 5vw, 40px);
+            margin-bottom: 15px;
+        }
+
+        .format-desc {
+            font-size: clamp(16px, 2.5vw, 20px);
+            line-height: 1.8;
+        }
+
+        .support-section {
+            background: white;
+            border: 6px solid var(--red);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 15px 15px 0px var(--green);
+        }
+
+        .timeline-box {
+            background: var(--cream);
+            border-left: 8px solid var(--blue);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .timeline-box h4 {
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-bar">
+        <img src="Logos/KYC-white.png" alt="KYC Logo" style="background: #2a2a2a; padding: 10px; border-radius: 8px;" onerror="this.style.display='none'">
+        <img src="Logos/logo%20black.png" alt="SDI Logo" onerror="this.style.display='none'">
+        <img src="Logos/logo_KYCTV@2x.png" alt="KYC.TV Logo" onerror="this.style.display='none'">
+    </div>
+    <div class="header">
+        <div class="header-title">RESOURCE LIBRARY</div>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">🏠 Home</a>
+        <a href="#diagrams" class="nav-link">📊 Visual Frameworks</a>
+        <a href="#formats" class="nav-link">🎨 Creative Formats</a>
+        <a href="#support" class="nav-link">🤝 Post-Workshop Support</a>
+    </nav>
+
+    <div class="container">
+        <!-- VISUAL FRAMEWORKS -->
+        <section id="diagrams">
+            <h2 class="section-title">📊 Visual Frameworks</h2>
+
+            <div class="diagram-card">
+                <h3>"7 Cities, 1 Story" Unity Model</h3>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph TB
+    A["🌍 7 CITIES"] --> B["SHARED STRUGGLES"]
+    A --> C["DIFFERENT CONTEXTS"]
+    A --> D["COLLECTIVE SOLUTIONS"]
+
+    B --> E["⭐ ONE PAN-AFRICAN<br/>STORY"]
+    C --> E
+    D --> E
+
+    B1["Poverty Penalty"] --> B
+    B2["Gender Barriers"] --> B
+    B3["Invisible Work"] --> B
+
+    C1["Dakar Context"] --> C
+    C2["Kampala Context"] --> C
+    C3["Lilongwe Context"] --> C
+
+    D1["Youth Mapping"] --> D
+    D2["Data Collection"] --> D
+    D3["Creative Media"] --> D
+
+    style E fill:#FFD60A,stroke:#000,stroke-width:6px,color:#000
+    style A fill:#4061AA,stroke:#000,stroke-width:4px,color:#fff
+    style B fill:#BB2522,stroke:#000,stroke-width:4px,color:#fff
+    style C fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+    style D fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+                    </div>
+                </div>
+            </div>
+
+            <div class="diagram-card">
+                <h3>Three Data Types Integration</h3>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+flowchart LR
+    subgraph Process["🔄 INVESTIGATION PROCESS"]
+        A["📊 HARD DATA<br/>Statistics from<br/>research"]
+        B["💬 LIVED DATA<br/>Community<br/>experiences"]
+        C["❓ MISSING DATA<br/>Gaps we<br/>investigate"]
+    end
+
+    A --> D["🎬 CREATIVE<br/>STORYTELLING"]
+    B --> D
+    C --> D
+
+    D --> E["📢 COMPELLING<br/>ADVOCACY"]
+    E --> F["✊ SOCIAL<br/>CHANGE"]
+
+    style A fill:#4061AA,stroke:#000,stroke-width:4px,color:#fff
+    style B fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+    style C fill:#BB2522,stroke:#000,stroke-width:4px,color:#fff
+    style D fill:#FFD60A,stroke:#000,stroke-width:5px,color:#000
+    style E fill:#FFF,stroke:#4061AA,stroke-width:4px
+    style F fill:#228B22,stroke:#000,stroke-width:5px,color:#fff
+                    </div>
+                </div>
+            </div>
+
+            <div class="diagram-card">
+                <h3>Post-Workshop Network Structure</h3>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph TB
+    Main["🌍 7 CITIES NETWORK<br/>All 16 Participants"]
+
+    Main --> WA["🌍 West Africa Pod<br/>Senegal, Sierra Leone, Ghana"]
+    Main --> EA["🌍 East Africa Pod<br/>Kenya, Uganda"]
+    Main --> SA["🌍 Southern Africa Pod<br/>Zambia, Malawi"]
+
+    Main --> Exp["🎯 4 Rotating Specialists<br/>Media, Data, Mapping, LME"]
+
+    WA --> Cross1["🔗 Cross-City<br/>Investigations"]
+    EA --> Cross1
+    SA --> Cross1
+
+    Cross1 --> KYC["📺 KYC.TV<br/>Story Sharing"]
+
+    style Main fill:#FFD60A,stroke:#000,stroke-width:6px,color:#000
+    style WA fill:#BB2522,stroke:#000,stroke-width:4px,color:#fff
+    style EA fill:#4061AA,stroke:#000,stroke-width:4px,color:#fff
+    style SA fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+    style Exp fill:#FFF,stroke:#228B22,stroke-width:4px
+    style Cross1 fill:#FFD60A,stroke:#4061AA,stroke-width:4px,color:#000
+    style KYC fill:#000,stroke:#FFD60A,stroke-width:4px,color:#FFD60A
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATIVE FORMATS MENU -->
+        <section class="formats-section" id="formats">
+            <h2 class="section-title" style="text-align: center;">🎨 Creative Format Menu (Choose ONE Primary for Showcase)</h2>
+            <p style="font-size: clamp(18px, 3vw, 24px); text-align: center; margin-bottom: 40px; font-style: italic;">
+                These high-impact formats leverage Lived Data and cultural context to turn data investigation into advocacy.
+            </p>
+
+            <div class="format-card">
+                <div class="format-rating">⭐ High-Impact Advocacy</div>
+                <h4>1. News Insert: Street Level & Expert Analysis</h4>
+                <div class="format-desc">
+                    A staged news segment (4-5 min) featuring an anchor (Hard Data introduction), field reporters (dramatic Lived Data interviews from each city), and an expert (Missing Data policy proposal).
+                </div>
+            </div>
+
+            <div class="format-card">
+                <div class="format-rating">⭐ Cultural Unity & Emotion</div>
+                <h4>2. Performance: Song, Poetry, or Dance</h4>
+                <div class="format-desc">
+                    A unified artistic piece (3-4 min) using song, poetry, or choreography. Must feature a common refrain/motif (Unity) and unique cultural elements from each city (Diversity). The performance must visually or lyrically incorporate a Hard Data fact or Missing Data question.
+                </div>
+            </div>
+
+            <div class="format-card">
+                <div class="format-rating">⭐ Conflict & Resolution</div>
+                <h4>3. Short Fictional Play (Dramatization)</h4>
+                <div class="format-desc">
+                    A theatrical skit (5-6 min) exploring the issue through character and conflict. It must personify the conflict (activist vs. bureaucracy) and use the shared cross-city learning as the turning point or solution.
+                </div>
+            </div>
+        </section>
+
+        <!-- POST-WORKSHOP SUPPORT -->
+        <section class="support-section" id="support">
+            <h2 class="section-title">🤝 Post-Workshop Support Timeline</h2>
+
+            <div class="timeline-box">
+                <h4>📦 Week 1: Welcome Package</h4>
+                <p>Email/WhatsApp package with photos, contact list, specialist contacts, WhatsApp group link, KYC.TV guidelines, investigation toolkit</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>💬 Week 2: First Support</h4>
+                <p>Personalized specialist support + Regional pod check-ins (West Africa, East Africa, Southern Africa pods meet separately)</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>📸 Week 4: Progress Check</h4>
+                <p>First progress report (photo + 3 sentences) shared in WhatsApp groups. Celebrate early wins!</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>📹 Week 6: Regional Calls</h4>
+                <p>Regional pod video calls with specialists. Troubleshoot challenges, share lessons</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>🎬 Week 8: First Submissions</h4>
+                <p>Story submissions to KYC.TV. Special "7 Cities Network" showcase featuring all participants' work</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>🌍 Week 12: Virtual Reunion</h4>
+                <p>All 16 participants reunite virtually. Share completed investigations, celebrate impact, plan next collaborations</p>
+            </div>
+
+            <h3 style="margin-top: 50px; margin-bottom: 25px; font-size: clamp(28px, 5vw, 40px); color: var(--red);">Success Metrics</h3>
+
+            <div style="background: var(--cream); padding: 30px; border-radius: 15px; margin-top: 20px;">
+                <p style="font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin-bottom: 15px;">🎯 Short-term (60 days):</p>
+                <ul style="margin-left: 30px; font-size: clamp(16px, 2.5vw, 20px); line-height: 2;">
+                    <li>5/7 countries report progress (70% engagement target)</li>
+                    <li>At least 2 cross-city collaborations initiated</li>
+                    <li>At least 3 stories submitted to KYC.TV</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--cream); padding: 30px; border-radius: 15px; margin-top: 20px;">
+                <p style="font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin-bottom: 15px;">🎯 Medium-term (6 months):</p>
+                <ul style="margin-left: 30px; font-size: clamp(16px, 2.5vw, 20px); line-height: 2;">
+                    <li>At least 5 countries complete investigations</li>
+                    <li>Cross-city data collection happening</li>
+                    <li>Stories used in advocacy in home cities</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--cream); padding: 30px; border-radius: 15px; margin-top: 20px;">
+                <p style="font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin-bottom: 15px;">🎯 Long-term (1 year+):</p>
+                <ul style="margin-left: 30px; font-size: clamp(16px, 2.5vw, 20px); line-height: 2;">
+                    <li>"7 Cities Network" becomes recognized SDI youth cohort</li>
+                    <li>Model replicated with new cities</li>
+                    <li>Policy changes attributable to network's work</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
