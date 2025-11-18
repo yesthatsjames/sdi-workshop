@@ -224,6 +224,45 @@
                 padding: 40px 20px;
             }
         }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 2cm;
+            }
+
+            body {
+                background: white;
+                color: black;
+                font-size: 10pt;
+            }
+
+            .logo-bar, .nav-bar {
+                position: static;
+            }
+
+            .header {
+                background: white !important;
+                color: black !important;
+                border-bottom: 3px solid black;
+            }
+
+            .header-title {
+                color: black !important;
+                text-shadow: none !important;
+            }
+
+            .diagram-card, .formats-section, .support-section {
+                page-break-inside: avoid;
+                border: 2px solid black !important;
+                background: white !important;
+                box-shadow: none !important;
+            }
+
+            .mermaid-container {
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>

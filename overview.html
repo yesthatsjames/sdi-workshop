@@ -281,6 +281,64 @@
                 padding: 40px 20px;
             }
         }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 2cm;
+            }
+
+            body {
+                background: white;
+                color: black;
+                font-size: 11pt;
+                line-height: 1.5;
+            }
+
+            .logo-bar, .nav-bar {
+                position: static;
+                page-break-after: avoid;
+            }
+
+            .header {
+                background: white !important;
+                color: black !important;
+                page-break-after: avoid;
+                border-bottom: 3px solid black;
+            }
+
+            .header-title, .header-subtitle {
+                color: black !important;
+                text-shadow: none !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+
+            .section-title {
+                color: black !important;
+                text-shadow: none !important;
+                border-bottom: 2px solid black;
+                padding-bottom: 10px;
+            }
+
+            .vision-box, .data-types-section, .goal-card, .team-card {
+                border: 2px solid black !important;
+                background: white !important;
+                page-break-inside: avoid;
+                box-shadow: none !important;
+            }
+
+            .data-type-card h3, .goal-title {
+                color: black !important;
+            }
+
+            .mermaid-container {
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>

@@ -779,6 +779,113 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Print Styles for PDF */
+        @media print {
+            @page {
+                size: A4;
+                margin: 2cm;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .logo-bar {
+                background: white !important;
+                border-bottom: 2px solid black;
+                padding: 15px 20px !important;
+                page-break-after: avoid;
+            }
+
+            .hero {
+                background: white !important;
+                border: 3px solid black;
+                padding: 40px 30px !important;
+                page-break-after: avoid;
+                box-shadow: none !important;
+            }
+
+            .hero-title {
+                color: black !important;
+                text-shadow: none !important;
+            }
+
+            .hero-subtitle {
+                color: #333 !important;
+                text-shadow: none !important;
+            }
+
+            .data-types-intro {
+                background: white !important;
+                border: 2px solid black;
+                padding: 30px !important;
+                page-break-inside: avoid;
+            }
+
+            .data-type-box {
+                background: white !important;
+                border: 2px solid black !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+
+            .card {
+                background: white !important;
+                border: 2px solid black !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                margin-bottom: 20px;
+            }
+
+            .card-header {
+                background: white !important;
+                border-bottom: 2px solid black;
+                color: black !important;
+                text-shadow: none !important;
+            }
+
+            .card-content {
+                background: white !important;
+            }
+
+            .data-section {
+                border: 1px solid #ccc !important;
+                page-break-inside: avoid;
+            }
+
+            .stat-box {
+                border: 1px solid #666 !important;
+                background: white !important;
+            }
+
+            .tip-card {
+                background: white !important;
+                border: 1px solid #999 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+
+            /* Hide interactive elements for print */
+            .mermaid {
+                max-height: none !important;
+                page-break-inside: avoid;
+            }
+
+            /* Ensure good page breaks */
+            h2, h3 {
+                page-break-after: avoid;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            .tips-grid {
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>

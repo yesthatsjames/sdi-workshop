@@ -81,7 +81,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, var(--red) 0%, var(--blue) 50%, var(--green) 100%);
+            background: var(--red);
             color: white;
             padding: 60px 40px;
             text-align: center;
@@ -245,11 +245,47 @@
         }
 
         @media print {
-            .nav-bar, .header {
-                display: none;
+            @page {
+                size: A4;
+                margin: 2cm;
             }
-            .worksheet-section {
+
+            body {
+                background: white;
+                color: black;
+                font-size: 10pt;
+            }
+
+            .logo-bar, .nav-bar {
+                position: static;
+                page-break-after: avoid;
+            }
+
+            .header {
+                background: white !important;
+                color: black !important;
+                border-bottom: 3px solid black;
+            }
+
+            .header-title {
+                color: black !important;
+                text-shadow: none !important;
+            }
+
+            .phase-section, .worksheet-section {
                 page-break-inside: avoid;
+                border: 2px solid black !important;
+                background: white !important;
+                box-shadow: none !important;
+            }
+
+            .mermaid-container {
+                page-break-inside: avoid;
+                max-height: 500px;
+            }
+
+            .timeline-section {
+                page-break-before: always;
             }
         }
     </style>
