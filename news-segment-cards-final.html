@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATA NEWS LIVE - Youth Turn Numbers Into Change</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#FFD60A',
+                primaryTextColor: '#2a2a2a',
+                primaryBorderColor: '#228B22',
+                secondaryColor: '#1D3557',
+                tertiaryColor: '#228B22',
+                lineColor: '#E63946',
+                fontSize: '18px',
+                fontFamily: 'Source Sans 3, Source Sans Pro, sans-serif'
+            },
+            flowchart: {
+                curve: 'cardinal',
+                padding: 35,
+                nodeSpacing: 100,
+                rankSpacing: 120,
+                diagramPadding: 35
+            }
+        });
+
+        // Make mermaid diagrams draggable after rendering
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelectorAll('.mermaid svg .node').forEach(function(node) {
+                    var isDragging = false;
+                    var startX, startY, nodeX = 0, nodeY = 0;
+
+                    node.style.cursor = 'move';
+
+                    node.addEventListener('mousedown', function(e) {
+                        isDragging = true;
+                        startX = e.clientX - nodeX;
+                        startY = e.clientY - nodeY;
+                        e.preventDefault();
+                    });
+
+                    document.addEventListener('mousemove', function(e) {
+                        if (!isDragging) return;
+                        nodeX = e.clientX - startX;
+                        nodeY = e.clientY - startY;
+                        node.style.transform = 'translate(' + nodeX + 'px, ' + nodeY + 'px)';
+                    });
+
+                    document.addEventListener('mouseup', function() {
+                        isDragging = false;
+                    });
+                });
+            }, 1000);
+        });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #BB2522;
+            --blue: #4061AA;
+            --yellow: #FFD60A;
+            --grey: #4d4d4d;
+            --cream: #FFF8E7;
+            --green: #228B22;
+            --gold: #FFD700;
+            --rasta-red: #BB2522;
+            --rasta-yellow: #FFC700;
+            --rasta-green: #009900;
+            --black: #000000;
+            --white: #ffffff;
+            --light-grey: #888584;
+        }
+
+        body {
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            background: var(--white);
+            color: #2a2a2a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--rasta-red) 0%, var(--blue) 50%, var(--rasta-green) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '⭐';
+            position: absolute;
+            font-size: 500px;
+            opacity: 0.03;
+            top: -100px;
+            right: -100px;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-title {
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            font-size: clamp(60px, 10vw, 140px);
+            font-weight: 900;
+            color: var(--rasta-yellow);
+            text-shadow: 5px 5px 0px rgba(0,0,0,0.5), 0 0 40px rgba(255, 199, 0, 0.5);
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 5px 5px 0px rgba(0,0,0,0.5), 0 0 40px rgba(255, 199, 0, 0.3); }
+            to { text-shadow: 5px 5px 0px rgba(0,0,0,0.5), 0 0 60px rgba(255, 199, 0, 0.7); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(28px, 5vw, 56px);
+            color: white;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero-tagline {
+            font-size: clamp(20px, 3vw, 32px);
+            color: var(--rasta-yellow);
+            font-style: italic;
+            max-width: 900px;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .scroll-indicator {
+            font-size: 80px;
+            color: var(--rasta-yellow);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            filter: drop-shadow(0 0 10px rgba(255, 199, 0, 0.5));
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(90deg, var(--rasta-red) 0%, var(--blue) 50%, var(--rasta-green) 100%);
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            letter-spacing: 1.5px;
+            background: rgba(0,0,0,0.3);
+            border: 2px solid var(--rasta-yellow);
+        }
+
+        .nav-link:hover {
+            background: var(--rasta-yellow);
+            color: var(--blue);
+            transform: scale(1.15) rotate(-2deg);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Card Section */
+        .card-section {
+            min-height: 100vh;
+            padding: 100px 40px;
+            position: relative;
+        }
+
+        .card-section:nth-child(odd) {
+            background: var(--white);
+        }
+
+        .card-section:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Card Header */
+        .card-header {
+            background: linear-gradient(135deg, var(--red) 0%, var(--blue) 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 15px 15px 0px var(--yellow);
+            border: 5px solid var(--yellow);
+        }
+
+        .card-number {
+            font-size: clamp(120px, 20vw, 220px);
+            font-weight: 900;
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            color: var(--yellow);
+            line-height: 1;
+            text-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+            opacity: 0.2;
+            position: absolute;
+            right: 30px;
+            top: 20px;
+        }
+
+        .card-title {
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            line-height: 1;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+        }
+
+        .card-subtitle {
+            font-size: clamp(24px, 4vw, 40px);
+            font-style: italic;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Provocation Box */
+        .provocation-box {
+            background: linear-gradient(135deg, var(--rasta-red) 0%, var(--red) 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 25px;
+            font-size: clamp(24px, 4vw, 40px);
+            font-weight: 700;
+            line-height: 1.5;
+            text-align: center;
+            border: 8px solid var(--rasta-yellow);
+            box-shadow: 15px 15px 0px var(--blue);
+            position: relative;
+            overflow: hidden;
+            grid-column: 1 / -1;
+        }
+
+        .provocation-box::before {
+            content: '⚡';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            top: -80px;
+            right: -80px;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Breaking News */
+        .breaking-news {
+            background: var(--rasta-yellow);
+            color: var(--blue);
+            padding: 40px 50px;
+            font-size: clamp(20px, 3vw, 36px);
+            font-weight: 900;
+            line-height: 1.4;
+            border: 8px solid var(--red);
+            text-align: center;
+            text-transform: uppercase;
+            box-shadow: 12px 12px 0px var(--rasta-green);
+            grid-column: 1 / -1;
+            position: relative;
+        }
+
+        .breaking-news::before {
+            content: '🔴 BREAKING: ';
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        /* Data Highlights */
+        .data-highlights {
+            background: white;
+            border: 8px solid var(--blue);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 12px 12px 0px var(--red);
+        }
+
+        .data-highlights h3 {
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 0px var(--yellow);
+        }
+
+        .data-stat {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 25px;
+            font-size: clamp(16px, 2.2vw, 22px);
+            line-height: 1.7;
+            padding: 20px;
+            background: var(--cream);
+            border-radius: 15px;
+            border-left: 6px solid var(--rasta-green);
+            transition: all 0.3s;
+        }
+
+        .data-stat:hover {
+            transform: translateX(15px);
+            background: var(--yellow);
+            box-shadow: 5px 5px 0px var(--red);
+        }
+
+        .data-emoji {
+            font-size: clamp(50px, 8vw, 80px);
+            flex-shrink: 0;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .stat-number {
+            color: var(--red);
+            font-weight: 900;
+            font-size: clamp(28px, 4vw, 42px);
+            text-shadow: 1px 1px 0px var(--yellow);
+        }
+
+        /* Data Source Links */
+        .data-stat a {
+            color: var(--blue);
+            text-decoration: underline;
+            transition: all 0.3s;
+        }
+
+        .data-stat a:hover {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        /* Mission Box */
+        .mission-box {
+            background: linear-gradient(135deg, var(--rasta-yellow) 0%, var(--yellow) 100%);
+            border: 8px solid var(--rasta-green);
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 12px 12px 0px var(--blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-box::before {
+            content: '🎯';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            top: -80px;
+            left: -80px;
+        }
+
+        .mission-box h3 {
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px white;
+        }
+
+        .mission-box p {
+            font-size: clamp(18px, 2.5vw, 28px);
+            font-weight: 700;
+            color: var(--blue);
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* MERMAID SECTION - CONSISTENT SIZE */
+        .mermaid-section {
+            background: white;
+            border: 12px solid var(--blue);
+            border-radius: 40px;
+            padding: 60px 50px;
+            margin: 80px 0;
+            box-shadow: 20px 20px 0px var(--red);
+            position: relative;
+        }
+
+        .mermaid-section::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 4px dashed var(--yellow);
+            border-radius: 30px;
+            pointer-events: none;
+        }
+
+        .mermaid-section h2 {
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            color: var(--blue);
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+            text-shadow: 3px 3px 0px var(--yellow);
+        }
+
+        .mermaid-section .subtitle {
+            text-align: center;
+            font-size: clamp(20px, 3vw, 32px);
+            color: var(--red);
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .drag-instruction {
+            text-align: center;
+            font-size: 16px;
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* CONSISTENT MERMAID CONTAINER */
+        .mermaid-container {
+            background: #fafafa;
+            padding: 40px;
+            border-radius: 20px;
+            min-height: 500px;
+            max-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--grey);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: auto;
+        }
+
+        /* CONSISTENT MERMAID STYLING */
+        .mermaid {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .mermaid svg {
+            max-width: 100% !important;
+            height: auto !important;
+            min-height: 450px !important;
+            max-height: 550px !important;
+        }
+
+        /* Force readable text in mermaid */
+        .mermaid text {
+            fill: #2a2a2a !important;
+            font-size: 18px !important;
+            font-weight: 600 !important;
+        }
+
+        .mermaid .nodeLabel {
+            color: #2a2a2a !important;
+            font-size: 18px !important;
+            font-weight: 600 !important;
+        }
+
+        /* Make edges visible and labels readable */
+        .mermaid .edgePath path {
+            stroke-width: 4px !important;
+        }
+
+        /* Arrow labels - BOLD DARK TEXT on BRIGHT YELLOW background for maximum readability */
+        .mermaid .edgeLabel {
+            background-color: #FFD60A !important;
+            padding: 8px 12px !important;
+            border-radius: 8px !important;
+            border: 2px solid #000 !important;
+        }
+
+        .mermaid .edgeLabel span {
+            color: #000 !important;
+            font-weight: 900 !important;
+            font-size: 17px !important;
+            text-shadow: none !important;
+        }
+
+
+        /* Make nodes bigger */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node polygon {
+            stroke-width: 5px !important;
+        }
+
+        /* Make nodes draggable cursor */
+        .mermaid .node {
+            cursor: move !important;
+        }
+
+        /* Performance Tips */
+        .tips-section {
+            background: linear-gradient(135deg, var(--grey) 0%, var(--blue) 100%);
+            border-radius: 40px;
+            padding: 60px;
+            color: white;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+            border: 6px solid var(--rasta-yellow);
+        }
+
+        .tips-section::before {
+            content: '🎭';
+            position: absolute;
+            font-size: 400px;
+            opacity: 0.05;
+            bottom: -100px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .tips-section h4 {
+            font-size: clamp(44px, 7vw, 72px);
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            font-weight: 900;
+            color: var(--rasta-yellow);
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .tip-item {
+            background: rgba(255, 214, 10, 0.15);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 8px solid var(--rasta-yellow);
+            font-size: clamp(16px, 2vw, 22px);
+            line-height: 1.8;
+            transition: all 0.3s;
+        }
+
+        .tip-item:hover {
+            background: rgba(255, 214, 10, 0.25);
+            transform: translateY(-8px) rotate(-1deg);
+            border-left-width: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .tip-emoji {
+            font-size: clamp(32px, 5vw, 48px);
+            margin-right: 15px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* Hidden Messages */
+        .hidden-message {
+            position: absolute;
+            font-size: 14px;
+            opacity: 0.2;
+            font-style: italic;
+            color: var(--blue);
+            transition: all 0.5s;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .hidden-message:hover {
+            opacity: 1;
+            color: white;
+            background: var(--red);
+            transform: scale(1.2);
+            z-index: 100;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Spiritual Insight Boxes */
+        .insight-box {
+            background: linear-gradient(135deg, var(--rasta-red) 0%, var(--blue) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            margin: 60px 0;
+            text-align: center;
+            font-size: clamp(20px, 3vw, 32px);
+            font-style: italic;
+            border: 6px solid var(--rasta-yellow);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            position: relative;
+            font-weight: 600;
+            line-height: 1.7;
+        }
+
+        .insight-box::before {
+            content: '⭐';
+            font-size: 60px;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: spin 10s linear infinite;
+        }
+
+        /* Big Emoji Accents */
+        .emoji-accent {
+            font-size: clamp(120px, 20vw, 300px);
+            position: absolute;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--rasta-green) 0%, var(--blue) 50%, var(--rasta-red) 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            border-top: 10px solid var(--rasta-yellow);
+        }
+
+        .footer-title {
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            color: var(--rasta-yellow);
+            margin-bottom: 30px;
+            letter-spacing: 4px;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+        }
+
+        .footer-text {
+            font-size: clamp(20px, 3vw, 32px);
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            line-height: 1.9;
+            font-weight: 600;
+        }
+
+        .footer-cta {
+            font-size: clamp(28px, 4vw, 48px);
+            color: var(--rasta-yellow);
+            font-weight: 900;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mermaid-section {
+                padding: 40px 20px;
+            }
+
+            .mermaid-container {
+                padding: 30px 15px;
+                min-height: 400px;
+                max-height: 500px;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-title">DATA NEWS LIVE</div>
+        <div class="hero-subtitle">Youth Turn Numbers Into Change</div>
+        <div class="hero-tagline">"Information is Power (If You Know How To Use It)"</div>
+        <div class="scroll-indicator" onclick="document.getElementById('nav').scrollIntoView()">↓</div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <a href="#card1" class="nav-link">💰 POVERTY</a>
+        <a href="#card2" class="nav-link">👊 WOMEN</a>
+        <a href="#card3" class="nav-link">👻 INVISIBLE</a>
+        <a href="#card4" class="nav-link">🚽 SANITATION</a>
+        <a href="#card5" class="nav-link">🏘️ LANDLORDS</a>
+        <a href="#card6" class="nav-link">💣 JOBS</a>
+        <a href="#card7" class="nav-link">🎓 DIPLOMA</a>
+        <a href="#card8" class="nav-link">🏡 LAND</a>
+    </nav>
+
+    <!-- CARD 1: POVERTY PENALTY -->
+    <section class="card-section" id="card1">
+        <div class="container">
+            <div class="card-header">
+                <div class="card-number">01</div>
+                <div class="card-title">THE POVERTY PENALTY 💰</div>
+                <div class="card-subtitle">"Why Do the Poor Pay More?"</div>
+            </div>
+
+            <div class="emoji-accent" style="top: 100px; right: 50px;">💧</div>
+            <div class="hidden-message" style="top: 20px; left: 20px;">
+                "Hard Data, Rich Stories"
+            </div>
+
+            <div class="content-grid">
+                <div class="provocation-box">
+                    💥 THE POOREST PAY THE HIGHEST PRICES 💥<br>
+                    What if communities mapped this penalty and negotiated better deals?
+                </div>
+
+                <div class="breaking-news">
+                    Poor Families Pay DOUBLE for Water, Power, Rent — Tonight We Expose the System
+                </div>
+
+                <div class="data-highlights">
+                    <h3>📊 THE SHOCKING DATA</h3>
+                    <div class="data-stat">
+                        <div class="data-emoji">💧</div>
+                        <div><span class="stat-number">172%</span> more for water in Nairobi slums vs. wealthy suburbs<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.citiesalliance.org/newsroom/news/cities-alliance-news/slum-upgrading-kenya-what-are-conditions-success" target="_blank">Cities Alliance - Slum Upgrading (Feb 2021)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">⚡</div>
+                        <div><span class="stat-number">5x</span> more for electricity in Kampala—even though Uganda has EXCESS supply!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://news.climate.columbia.edu/2022/06/06/affordable-energy-and-water-are-out-of-reach-for-the-urban-poor-providing-both-would-be-simple/" target="_blank">Columbia Univ - Affordable Energy (June 2022)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">🏠</div>
+                        <div><span class="stat-number">20%</span> more rent per m² for substandard housing<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.citiesalliance.org/newsroom/news/cities-alliance-news/slum-upgrading-kenya-what-are-conditions-success" target="_blank">Cities Alliance - Slum Upgrading (Feb 2021)</a></small></div>
+                    </div>
+                </div>
+
+                <div class="mission-box">
+                    <h3>🎯 YOUR MISSION</h3>
+                    <p>Expose WHO profits from the poverty penalty and HOW youth use data to fight back!</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                ⭐ KNOW YOUR CITY • KNOW YOUR COMMUNITY ⭐
+            </div>
+
+            <div class="mermaid-section">
+                <h2>🔥 YOUTH DATA JOURNEY</h2>
+                <div class="subtitle">From Robbery to Revolution</div>
+                <div class="drag-instruction">💡 Drag the blocks to rearrange them!</div>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph LR
+    A["😡 THE PENALTY STRIKES<br/>Poor Pay 172% MORE for Water!<br/><i>Slum Families Robbed Daily</i>"]
+    B["📱 YOUTH MAP & FIGHT<br/>Collect Data in Settlements<br/><b>RISE UP WITH PHONES!</b>"]
+    C["⚖️ NEGOTIATE & WIN<br/>Present Proof to Authorities<br/>Demand Fair Prices NOW!"]
+    D["💪 THE CITY TRANSFORMED<br/>Affordable Water Flows!<br/><i>We Control Our Story!</i>"]
+
+    A -->|Data as Weapon| B
+    B -->|Community Proof| C
+    C -->|Victory| D
+
+    style A fill:#FF4500,stroke:#000,stroke-width:5px,color:#FFF8E7
+    style B fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style C fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style D fill:#228B22,stroke:#000,stroke-width:5px,color:#FFF8E7
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎭 SPEAK OUT</h4>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-emoji">🙋</span> <strong>The Reality Check:</strong> Ask participants: "How much of your family's income goes to water and electricity?" Have people stand if it's over 10%, then 20%, then 30%. Watch how many remain standing. This isn't just statistics—these are your neighbors choosing between drinking water and school fees. Discuss: What could families do with that money if utilities were affordable?
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">🔔</span> <strong>Data Comparison Challenge:</strong> Write prices from wealthy neighborhoods on one board, slum prices on another. Have youth calculate the percentage difference in real-time. Ask: "Who sets these prices? Why is the same water cheaper in wealthy areas? What if we collected data from every neighborhood and showed it to the city council?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">👥</span> <strong>The Poverty Tax Map:</strong> Get 10 volunteers. Give 2 people full bottles of water (wealthy areas), give 8 people small cups (slums) but charge them MORE. Make it visual and absurd. Then ask: "What would happen if youth mapped every water point, every price, every vendor in this community? Could we negotiate as a collective?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💬</span> <strong>Flip the Script:</strong> Challenge the audience: "The system says poor people are 'high risk' so they charge more. But if 172% more doesn't prevent poverty, who's really benefiting from this system? What if youth-collected data proved that fair pricing actually CREATES economic growth?"
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden-message" style="bottom: 40px; right: 40px;">
+                "Data Rights Are Human Rights"
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD 2: YOUNG WOMEN -->
+    <section class="card-section" id="card2">
+        <div class="container">
+            <div class="card-header">
+                <div class="card-number">02</div>
+                <div class="card-title">YOUNG WOMEN 👊</div>
+                <div class="card-subtitle">"The Most Excluded, The Most Essential"</div>
+            </div>
+
+            <div class="emoji-accent" style="top: 120px; left: 60px;">💪</div>
+            <div class="hidden-message" style="top: 30px; right: 30px;">
+                "Unity! Our Strength"
+            </div>
+
+            <div class="content-grid">
+                <div class="provocation-box">
+                    🔥 DOUBLE DISCRIMINATION = DOUBLE POWER 🔥<br>
+                    What if we designed solutions BY young women, FOR everyone?
+                </div>
+
+                <div class="breaking-news">
+                    Young Women Earn Fraction But Deliver DOUBLE Impact — What Happens With Equal Access?
+                </div>
+
+                <div class="data-highlights">
+                    <h3>📊 THE POWER DATA</h3>
+                    <div class="data-stat">
+                        <div class="data-emoji">⚖️</div>
+                        <div>Ghana: <span class="stat-number">77%</span> women vs <span class="stat-number">58%</span> men in vulnerable work<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.gov.uk/government/publications/ghana-country-policy-and-information-notes/country-policy-and-information-note-internal-relocation-ghana-december-2024-accessible" target="_blank">UK Gov - Ghana Policy (Dec 2024)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">💪</div>
+                        <div>Zambia: <span class="stat-number">139,400</span> women got $225 grants → DOUBLED education targets!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.worldbank.org/en/country/zambia/overview" target="_blank">World Bank - Zambia (2024)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">🎯</div>
+                        <div><span class="stat-number">70%</span> of 30 million jobs by 2030 MUST go to young women<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://mastercardfdn.org/young-africa-works/" target="_blank">Mastercard Foundation (2024)</a></small></div>
+                    </div>
+                </div>
+
+                <div class="mission-box">
+                    <h3>🎯 YOUR MISSION</h3>
+                    <p>Show how young women outperform EVERY projection when they get access!</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                ⭐ EVERY STREET MATTERS ⭐
+            </div>
+
+            <div class="mermaid-section">
+                <h2>✊ SISTERS & SIBLINGS RISING</h2>
+                <div class="subtitle">From Excluded to Essential • All Genders Welcome</div>
+                <div class="drag-instruction">💡 Drag the blocks to rearrange them!</div>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph LR
+    A["😢 DOUBLE DISCRIMINATION<br/>Women & Gender Non-Conforming Face Barriers<br/><i>Break the Chains!</i>"]
+    B["📊 YOUTH MAP POWER<br/>Map Opportunities & Gaps<br/><b>DATA IS OUR VOICE!</b>"]
+    C["📢 ADVOCATE FOR EQUALITY<br/>Use Data to Demand Loans & Jobs<br/>Challenge Systems Together!"]
+    D["🌟 WOMEN LEAD THE CHANGE<br/>Equal Access! Businesses Thrive<br/><i>Sisters Rising!</i>"]
+
+    A -->|Map Injustice| B
+    B -->|Amplify Stories| C
+    C -->|Empower All| D
+
+    style A fill:#FF4500,stroke:#000,stroke-width:5px,color:#FFF
+    style B fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style C fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style D fill:#228B22,stroke:#000,stroke-width:5px,color:#FFF
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎭 SPEAK OUT</h4>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-emoji">💫</span> <strong>The Ripple Effect Exercise:</strong> Put one young woman in the center as an entrepreneur. Have others circle around her representing: her children (now in school), employees she hires, suppliers she buys from, customers who benefit, other women she mentors. Physically show how ONE woman with access creates opportunities for 10+ people. Ask: "What happens when we multiply this by 139,400 women? Why aren't banks seeing THIS data?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💵</span> <strong>The $225 Challenge:</strong> Start with one participant holding $225. Track it as it: pays school fees (education), buys inventory (business), employs neighbor (jobs), purchases from suppliers (local economy). Show how it becomes $2,000+ in community value. Ask: "The World Bank says this grant DOUBLED education targets. Why do banks still call women 'high risk'? What if youth data proved otherwise?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">📚</span> <strong>The Access Gap Visual:</strong> Create two stacks of paper representing opportunities. Men: huge stack. Women: tiny stack. Have someone dramatically knock over the tiny stack. Then rebuild it BIGGER with the $225 data. Discuss: "77% of women in vulnerable work isn't about ability—it's about ACCESS. What would youth-led data collection reveal about barriers? What solutions would YOUNG WOMEN design?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💬</span> <strong>The Banking Paradox:</strong> Present this to the audience: "Banks say women are 'risky investments.' But the data shows women OUTPERFORM every projection. In Zambia, they doubled the targets. So who's really bad at assessment—women, or the banks? What if youth mapped EVERY women-led business in this community and created our own credit rating system?"
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden-message" style="bottom: 50px; left: 50px;">
+                "Information is Power"
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD 3: INVISIBLE WORKFORCE -->
+    <section class="card-section" id="card3">
+        <div class="container">
+            <div class="card-header">
+                <div class="card-number">03</div>
+                <div class="card-title">INVISIBLE WORKFORCE 👻</div>
+                <div class="card-subtitle">"Africa's Hidden Asset"</div>
+            </div>
+
+            <div class="emoji-accent" style="top: 80px; right: 80px;">💼</div>
+            <div class="hidden-message" style="top: 40px; left: 40px;">
+                "Know Your City"
+            </div>
+
+            <div class="content-grid">
+                <div class="provocation-box">
+                    👻 85% OF JOBS DON'T OFFICIALLY EXIST 👻<br>
+                    What if we made the invisible economy visible and VALUABLE?
+                </div>
+
+                <div class="breaking-news">
+                    The Ghost Economy Running This Continent — 85% of Workers Don't Exist!
+                </div>
+
+                <div class="data-highlights">
+                    <h3>📊 THE GHOST DATA</h3>
+                    <div class="data-stat">
+                        <div class="data-emoji">👻</div>
+                        <div><span class="stat-number">85%</span> of African jobs = officially INVISIBLE<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.ilo.org/meetings-and-events/informal-economy-africa-which-way-forward-making-policy-responsive" target="_blank">ILO - Informal Economy (Jan 2024)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">🧑‍💼</div>
+                        <div><span class="stat-number">95%</span> of employed youth work informally—productive ghosts!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://mastercardfdn.org/en/our-research/pasgr-and-mastercard-foundations-groundbreaking-study-on-african-youths-economic-landscape/" target="_blank">Mastercard Foundation/PASGR (2024)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">💼</div>
+                        <div><span class="stat-number">77%</span> WANT to formalize—NOT avoiding systems!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://en.wikipedia.org/wiki/Komboni" target="_blank">Wikipedia - Komboni</a></small></div>
+                    </div>
+                </div>
+
+                <div class="mission-box">
+                    <h3>🎯 YOUR MISSION</h3>
+                    <p>Transform the invisible into the INDISPENSABLE through youth mapping!</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                ⭐ DATA RIGHTS FOR ALL ⭐
+            </div>
+
+            <div class="mermaid-section">
+                <h2>👻 GHOST TO GOLD</h2>
+                <div class="subtitle">From Invisible to Indispensable</div>
+                <div class="drag-instruction">💡 Drag the blocks to rearrange them!</div>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph BT
+    A["😶 INVISIBLE WORK<br/>85% Jobs Hidden, Youth Economies Ignored!<br/><i>Count Us In!</i>"]
+    B["📱 MAP THE ECONOMY<br/>Youth Survey Informal Jobs<br/><b>PROVE OUR VALUE!</b>"]
+    C["📊 DEMAND RECOGNITION<br/>Show Data to Policymakers<br/>Formalize & Fund Us!"]
+    D["✨ VISIBLE & VALUED<br/>Jobs Recognized! Loans, Rights, Growth<br/><i>Our Hustle Builds Cities!</i>"]
+
+    A -->|Expose Truth| B
+    B -->|Build Evidence| C
+    C -->|Transform Power| D
+
+    style A fill:#FF4500,stroke:#000,stroke-width:5px,color:#FFF
+    style B fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style C fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style D fill:#228B22,stroke:#000,stroke-width:5px,color:#FFF
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎭 SPEAK OUT</h4>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-emoji">👻</span> <strong>The Invisible Majority:</strong> Get 10 people to stand. Ask "Who has ever sold something small—snacks, phone credit, clothes?" Watch 8-9 people stay standing. Say: "You're the 85%. You're productive. You're entrepreneurial. But to the government, you don't exist." Discuss: What if youth mapped EVERY informal business in one neighborhood? What would that data reveal about the REAL economy? Who would it empower?
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">📊</span> <strong>The Recognition Census:</strong> Do a live census: "Stand if you or your family member has a side hustle, sells goods, does casual work, or earns money that's not on paper." Count them. Say "Welcome to the 85%—you're running Africa's economy." Ask: "What would change if this work was RECOGNIZED? If you could get loans, business licenses, legal protection? How would youth-collected data make that happen?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">👏</span> <strong>From Invisible to Invaluable:</strong> Every time someone says "informal," have the audience snap their fingers (showing how common it is). Then reframe: Replace "informal" with "entrepreneurial," "flexible," "innovative." Discuss: The 77% who WANT to formalize aren't avoiding taxes—they're being ignored by systems. What if youth surveyed informal workers about what they actually need? Would policy look different?
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💬</span> <strong>Who's Really Out of Touch?:</strong> Challenge the narrative: "If 85% of African jobs are informal, and 95% of youth work is informal, then who's 'normal'—us or the government? What if policymakers are the ones out of touch? What would happen if youth presented OUR data about OUR economy to them? Would they finally listen?"
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden-message" style="bottom: 60px; right: 60px;">
+                "Hard Data, Rich Stories"
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD 4: SANITATION -->
+    <section class="card-section" id="card4">
+        <div class="container">
+            <div class="card-header">
+                <div class="card-number">04</div>
+                <div class="card-title">THE TOILET CRISIS 🚽</div>
+                <div class="card-subtitle">"What Bodies Count?"</div>
+            </div>
+
+            <div class="emoji-accent" style="top: 90px; left: 70px;">💀</div>
+
+            <div class="content-grid">
+                <div class="provocation-box">
+                    🚽 1 TOILET FOR 103 PEOPLE 🚽<br>
+                    Map sanitation and DEMAND infrastructure NOW!
+                </div>
+
+                <div class="breaking-news">
+                    1 Toilet for 103 People — The Sanitation Scandal Making Slums Sick
+                </div>
+
+                <div class="data-highlights">
+                    <h3>📊 DIGNITY DATA</h3>
+                    <div class="data-stat">
+                        <div class="data-emoji">🚽</div>
+                        <div><span class="stat-number">1:103</span> toilet ratio in Mukuru, Nairobi<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.citiesalliance.org/newsroom/news/cities-alliance-news/slum-upgrading-kenya-what-are-conditions-success" target="_blank">Cities Alliance (Feb 2021)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">💀</div>
+                        <div>Cholera outbreaks ANNUAL—pit latrines empty into rivers<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.citiesalliance.org/newsroom/news/cities-alliance-news/slum-upgrading-kenya-what-are-conditions-success" target="_blank">Cities Alliance (Feb 2021)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">⏰</div>
+                        <div><span class="stat-number">2 HOURS</span> wait for toilets—missing work & dignity<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.citiesalliance.org/newsroom/news/cities-alliance-news/slum-upgrading-kenya-what-are-conditions-success" target="_blank">Cities Alliance (Feb 2021)</a></small></div>
+                    </div>
+                </div>
+
+                <div class="mission-box">
+                    <h3>🎯 YOUR MISSION</h3>
+                    <p>Show how youth GPS-mapping FORCES infrastructure investment!</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                ⭐ EVERY STREET MATTERS ⭐
+            </div>
+
+            <div class="mermaid-section">
+                <h2>🚽 DIGNITY FOR ALL</h2>
+                <div class="subtitle">From Shame to Sanitation • Safe Spaces for Everyone</div>
+                <div class="drag-instruction">💡 Drag the blocks to rearrange them!</div>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph BT
+    A["😡 SANITATION SHAME<br/>No Toilets, Open Defecation, 31% Affected!<br/><i>Dignity Denied!</i>"]
+    B["📱 YOUTH DEMAND DATA<br/>Map Toilet Gaps Community-Wide<br/><b>HEALTH IS POWER!</b>"]
+    C["📊 FORCE INFRASTRUCTURE<br/>Present Maps to Leaders<br/>Build Toilets Now!"]
+    D["✊ HEALTHY COMMUNITIES<br/>Toilets Everywhere! No More Crises<br/><i>We Build With Data!</i>"]
+
+    A -->|Reveal Crisis| B
+    B -->|Mobilize| C
+    C -->|Win Dignity| D
+
+    style A fill:#FF4500,stroke:#000,stroke-width:5px,color:#FFF
+    style B fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style C fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style D fill:#228B22,stroke:#000,stroke-width:5px,color:#FFF
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎭 SPEAK OUT</h4>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-emoji">⏰</span> <strong>The Waiting Game:</strong> Line up 15 people for ONE bathroom. Set a timer for 2 minutes per person. Do the math together: "30 minutes for 15 people. Now multiply by 103—that's 3.5 HOURS. When do you go to work? When do kids go to school?" Then ask: "What if youth GPS-mapped every toilet in this settlement and presented the data to the city? Would they still say 'no budget'?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💀</span> <strong>The Cholera Exercise:</strong> Give one person a sign saying "Cholera." Have them touch 10 people who dramatically "fall sick." Show how one contaminated water source affects entire communities. Discuss: "This happens ANNUALLY in Mukuru. It's preventable. What if youth mapped EVERY pit latrine that drains into water sources? Could that data force infrastructure investment? Could it save lives?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">👟</span> <strong>The Dignity Walk:</strong> Have someone walk across the room while others stomp loudly each time you say "toilet." Feel the discomfort. Then ask: "Imagine doing this every single day, waiting 2 hours, missing work, losing wages, losing dignity. What would youth-led sanitation mapping look like? Who would it hold accountable? What would change?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💬</span> <strong>The Body Count Question:</strong> Challenge the audience: "1 toilet for 103 people. Annual cholera outbreaks. 2-hour waits. How many people need to get sick before it's officially a crisis? Or is it only a crisis when it happens in wealthy neighborhoods? What if youth documented EVERY sanitation failure with photos, GPS coordinates, health impacts? Would authorities finally respond?"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD 5: LANDLORDS -->
+    <section class="card-section" id="card5">
+        <div class="container">
+            <div class="card-header">
+                <div class="card-number">05</div>
+                <div class="card-title">LANDLORD SCANDAL 🏘️</div>
+                <div class="card-subtitle">"Who Profits from Poverty?"</div>
+            </div>
+
+            <div class="content-grid">
+                <div class="provocation-box">
+                    💰 SLUMS AREN'T ACCIDENTS—THEY'RE PROFITABLE 💰<br>
+                    Map WHO owns WHAT and demand rights!
+                </div>
+
+                <div class="breaking-news">
+                    Who's Getting Rich While 200 Million Live in Slums? Follow The Money!
+                </div>
+
+                <div class="data-highlights">
+                    <h3>📊 PROFIT DATA</h3>
+                    <div class="data-stat">
+                        <div class="data-emoji">🏘️</div>
+                        <div><span class="stat-number">200 MILLION</span> in slums—61.7% urban (highest globally!)<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S2210670723004742" target="_blank">ScienceDirect (Aug 2023)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">🏠</div>
+                        <div>Nairobi: <span class="stat-number">60%</span> on only <span class="stat-number">5%</span> of land—who owns 95%?<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.citiesalliance.org/newsroom/news/cities-alliance-news/slum-upgrading-kenya-what-are-conditions-success" target="_blank">Cities Alliance (Feb 2021)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">📈</div>
+                        <div>Zambia slums growing <span class="stat-number">12%/YEAR</span>—poverty is profitable!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://en.wikipedia.org/wiki/Komboni" target="_blank">Wikipedia - Komboni</a></small></div>
+                    </div>
+                </div>
+
+                <div class="mission-box">
+                    <h3>🎯 YOUR MISSION</h3>
+                    <p>Expose WHO profits and HOW youth mapping stops evictions!</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                ⭐ KNOW YOUR COMMUNITY • DATA RIGHTS ⭐
+            </div>
+
+            <div class="mermaid-section">
+                <h2>🏘️ HOUSING JUSTICE</h2>
+                <div class="subtitle">From Exploitation to Rights • Home is a Human Right</div>
+                <div class="drag-instruction">💡 Drag the blocks to rearrange them!</div>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph LR
+    A["😡 EXPLOITATION TRAP<br/>Evictions, Slum Growth, 200M in Slums!<br/><i>Landlords Steal Homes!</i>"]
+    B["📱 MAP OUR RIGHTS<br/>Youth Document Exploitation<br/><b>SECURE OUR LAND!</b>"]
+    C["⚖️ CHALLENGE POWER<br/>Data Forces Legal Protections<br/>Stop Evictions!"]
+    D["✊ SECURE FUTURES<br/>Rights to Homes! Communities Thrive<br/><i>We Own Our Destiny!</i>"]
+
+    A -->|Count Losses| B
+    B -->|Fight Back| C
+    C -->|Build Security| D
+
+    style A fill:#FF4500,stroke:#000,stroke-width:5px,color:#FFF
+    style B fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style C fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style D fill:#228B22,stroke:#000,stroke-width:5px,color:#FFF
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎭 SPEAK OUT</h4>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-emoji">📄</span> <strong>The Land Inequality Map:</strong> Draw a large rectangle representing Nairobi. Mark off just 5% and cram 60% of participants into it. Leave the other 95% nearly empty. Physically feel the squeeze. Then tear up the small section dramatically. Ask: "Who owns that 95%? Why are 60% of Nairobi residents squeezed onto 5% of the land? What if youth mapped EVERY landowner, EVERY empty plot, EVERY slum? Would that data force land redistribution?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💰</span> <strong>The Rent Extraction Chain:</strong> Get 10 people to represent tenants, each holding money. Have them all pass their money to ONE person (landlord). Watch wealth concentrate. Then ask: "Slums are growing 12% per year in Zambia. That's not accidental—it's PROFITABLE. What if youth tracked where rent money goes? Who's getting rich from poverty? Could data expose this system?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">🚪</span> <strong>The Eviction Shock:</strong> Mid-discussion, suddenly point to half the room and shout: "You're evicted. NOW. No reason. No notice. GET OUT." Feel the injustice. Then discuss: "This is reality for 85% without legal rights. What if youth GPS-mapped EVERY household, documented how long they've lived there, collected their stories? Could that data become legal evidence for tenure rights?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💬</span> <strong>The Profit Paradox:</strong> Challenge the narrative: "Politicians say 'slums are bad, we need to eliminate them.' But slums grow 12% yearly and house 200 million people. If they're so bad, why are they so profitable for landowners? Why do they persist? What if youth-collected data revealed WHO profits from keeping people in slums? Would that change policy?"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD 6: JOBS -->
+    <section class="card-section" id="card6">
+        <div class="container">
+            <div class="card-header">
+                <div class="card-number">06</div>
+                <div class="card-title">THE JOBS BOMB 💣</div>
+                <div class="card-subtitle">"Dividend or Disaster?"</div>
+            </div>
+
+            <div class="content-grid">
+                <div class="provocation-box">
+                    💣 100 MILLION MORE YOUTH IN 7 YEARS 💣<br>
+                    What we do RIGHT NOW decides: goldmine or catastrophe?
+                </div>
+
+                <div class="breaking-news">
+                    100 Million More By 2030 — Future Goldmine or Coming Catastrophe?
+                </div>
+
+                <div class="data-highlights">
+                    <h3>📊 EXPLOSION DATA</h3>
+                    <div class="data-stat">
+                        <div class="data-emoji">💣</div>
+                        <div><span class="stat-number">100 MILLION</span> MORE by 2030—7 years!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://mastercardfdn.org/en/news/world-data-lab-and-the-mastercard-foundation-announce-launch-of-the-africa-youth-employment-clock/" target="_blank">Mastercard Foundation / World Bank (2024)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">⏰</div>
+                        <div>Need <span class="stat-number">15M jobs/year</span>—creating maybe 5M<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://blogs.worldbank.org/en/africacan/a-ladder-of-opportunity-unlocking-jobs-for-todays-african-youth" target="_blank">World Bank (Oct 2024)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">🌍</div>
+                        <div>By 2050: <span class="stat-number">1 in 3</span> young globally = African<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://mastercardfdn.org/en/news/world-data-lab-and-the-mastercard-foundation-announce-launch-of-the-africa-youth-employment-clock/" target="_blank">Mastercard Foundation / World Bank (2024)</a></small></div>
+                    </div>
+                </div>
+
+                <div class="mission-box">
+                    <h3>🎯 YOUR MISSION</h3>
+                    <p>FLIP IT—youth aren't problem, they're UNTAPPED POTENTIAL!</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                ⭐ UNITY! OUR STRENGTH ⭐
+            </div>
+
+            <div class="mermaid-section">
+                <h2>💣 YOUTH POWER BOMB</h2>
+                <div class="subtitle">From Trap to Transformation • All Youth Deserve Work</div>
+                <div class="drag-instruction">💡 Drag the blocks to rearrange them!</div>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph BT
+    A["😰 JOBLESS CYCLE<br/>Youth Unemployment 3x Adults, Traps in Poverty!<br/><i>Jobs Now!</i>"]
+    B["📊 MAP SKILLS & GAPS<br/>Youth Track Job Data<br/><b>CREATE OPPORTUNITIES!</b>"]
+    C["📢 ADVOCATE FOR WORK<br/>Data Demands Training & Jobs<br/>Break the Trap!"]
+    D["💪 THRIVING YOUTH<br/>Real Jobs! Skills to Income<br/><i>We Employ Ourselves!</i>"]
+
+    A -->|Expose Trap| B
+    B -->|Plan Escape| C
+    C -->|Freedom| D
+
+    style A fill:#FF4500,stroke:#000,stroke-width:5px,color:#FFF
+    style B fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style C fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style D fill:#228B22,stroke:#000,stroke-width:5px,color:#FFF
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎭 SPEAK OUT</h4>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-emoji">⏱️</span> <strong>The Population Bomb Countdown:</strong> Set a timer. Every 5 seconds, have someone stand up. Watch the room fill. Say: "This is happening across Africa—100 million MORE youth by 2030. That's just 5 years away." Then ask: "Are we creating a demographic dividend or a disaster? What if youth OURSELVES mapped our skills, our ideas, our needs? What solutions would WE design that politicians aren't seeing?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">🪑</span> <strong>Musical Chairs Reality Check:</strong> Set up 5 chairs. Get 15 people to compete for them when the music stops. Feel the desperation. Then explain: "Africa needs 15 million jobs per year. We're creating maybe 5 million. This isn't a game—this is youth reality." Discuss: "What if youth tracked EVERY job created vs. EVERY youth entering the market? Could that data pressure governments to act? What industries should we be pushing for?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">⏰</span> <strong>The Jobs Clock:</strong> Set a timer to beep every 23 seconds. Each beep = another youth entering the job market. Feel the relentlessness. Count how many enter in just 2 minutes (5 youth!). Ask: "By 2050, 1 in 3 young people globally will be African. That's either Africa's century or Africa's crisis. What if youth used data to show WHERE jobs could be created? What sectors? What skills? Would investors listen?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💬</span> <strong>Reframe the Narrative:</strong> Challenge the audience: "Headlines say 'youth unemployment crisis.' But flip it—we're not a PROBLEM, we're an OPPORTUNITY. 100 million more creative minds. 100 million more innovators. What if youth collected data proving OUR value? What if we mapped OUR skills, OUR innovations, OUR potential? Could we force the world to see us as the resource we are?"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD 7: DIPLOMA -->
+    <section class="card-section" id="card7">
+        <div class="container">
+            <div class="card-header">
+                <div class="card-number">07</div>
+                <div class="card-title">THE DIPLOMA TRAP 🎓</div>
+                <div class="card-subtitle">"Educated But Unemployable?"</div>
+            </div>
+
+            <div class="content-grid">
+                <div class="provocation-box">
+                    🎓 MORE EDUCATION = LESS EMPLOYMENT 🎓<br>
+                    Map the REAL skills gap and build peer solutions!
+                </div>
+
+                <div class="breaking-news">
+                    More Education, Less Employment — Why Degrees Don't Equal Jobs
+                </div>
+
+                <div class="data-highlights">
+                    <h3>📊 PARADOX DATA</h3>
+                    <div class="data-stat">
+                        <div class="data-emoji">🎓</div>
+                        <div>Kenya: <span class="stat-number">67%</span> youth unemployment despite most educated generation!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.fke-kenya.org/policy-issues/youth-employment" target="_blank">Fed of Kenya Employers</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">📚</div>
+                        <div><span class="stat-number">1 MILLION</span> enter market annually with NO relevant skills<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.fke-kenya.org/policy-issues/youth-employment" target="_blank">Fed of Kenya Employers</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">📄</div>
+                        <div>Malawi: 41% secondary, 9% higher ed—yet 24% in poverty<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://unhabitat.org/malawi-blantyre-urban-profile" target="_blank">UN-Habitat</a></small></div>
+                    </div>
+                </div>
+
+                <div class="mission-box">
+                    <h3>🎯 YOUR MISSION</h3>
+                    <p>Expose diploma trap—schools teach theory, markets need SKILLS!</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                ⭐ INFORMATION IS POWER (IF YOU KNOW HOW TO USE IT) ⭐
+            </div>
+
+            <div class="mermaid-section">
+                <h2>🎓 EDUCATION REVOLUTION</h2>
+                <div class="subtitle">From Trap to Relevant Skills • Learning for Liberation</div>
+                <div class="drag-instruction">💡 Drag the blocks to rearrange them!</div>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph LR
+    A["😞 EDUCATION FAIL<br/>80% Kids Can't Read, No Path to Jobs!<br/><i>Learn to Lead!</i>"]
+    B["📊 MAP LEARNING GAPS<br/>Youth Survey Schools<br/><b>DATA FOR BETTER EDUCATION!</b>"]
+    C["📢 DEMAND QUALITY<br/>Push for Job-Link Training<br/>Reform Systems!"]
+    D["💼 JOBS FROM SCHOOL<br/>Education = Employment! Skilled Youth Build<br/><i>Future in Our Hands!</i>"]
+
+    A -->|Highlight Failure| B
+    B -->|Call for Change| C
+    C -->|Success Path| D
+
+    style A fill:#FF4500,stroke:#000,stroke-width:5px,color:#FFF
+    style B fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style C fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style D fill:#228B22,stroke:#000,stroke-width:5px,color:#FFF
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎭 SPEAK OUT</h4>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-emoji">🎴</span> <strong>The Skills Mismatch Game:</strong> Create two columns on a board: "What Schools Teach" vs "What Businesses Need." Have youth shout out examples. Watch the disconnect. Then ask: "1 million Kenyan youth enter the job market annually with NO relevant skills. Who's failing—the students or the system? What if youth surveyed ACTUAL employers about what they need, then presented that data to education ministries? Could we force curriculum reform?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">📜</span> <strong>The Diploma Dramatization:</strong> Have someone hold a diploma certificate high and proud. As you list each failure stat (67% unemployed, no practical skills, outdated curriculum), have them slowly lower it until it drops to the ground. Then ask: "If education is supposed to be the key to opportunity, why does it keep opening the wrong doors? What would youth-designed technical training look like? What skills would WE prioritize?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">🙌</span> <strong>The Two-Hand Gap:</strong> Ask: "Raise your hand if you or someone you know has a diploma/degree." (Many hands up). Then: "Keep your hand up if you/they have a job matching that education." (Most hands down). Feel that gap. Discuss: "In Malawi, 41% have secondary education, 9% have higher ed—yet 24% live in poverty. What if youth tracked graduation rates vs. employment rates? Would that data force accountability?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💬</span> <strong>The Education Paradox:</strong> Challenge the assumption: "We have the MOST educated generation in African history. Yet we have the HIGHEST youth unemployment. How does that math work? What's broken? What if youth collected data from peers: What did you study? What job do you have? What skills do you wish you'd learned? Could we create our OWN skills database and training programs?"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD 8: LAND -->
+    <section class="card-section" id="card8">
+        <div class="container">
+            <div class="card-header">
+                <div class="card-number">08</div>
+                <div class="card-title">LAND RIGHTS NOW 🏡</div>
+                <div class="card-subtitle">"Land is Ours!"</div>
+            </div>
+
+            <div class="content-grid">
+                <div class="provocation-box">
+                    🏡 ONLY 15% HAVE LEGAL RIGHTS 🏡<br>
+                    Document land claims with data and WIN legal protections!
+                </div>
+
+                <div class="breaking-news">
+                    Only 15% Have Rights — Millions Face Evictions. Who REALLY Owns The Land?
+                </div>
+
+                <div class="data-highlights">
+                    <h3>📊 OWNERSHIP DATA</h3>
+                    <div class="data-stat">
+                        <div class="data-emoji">⚖️</div>
+                        <div>Only <span class="stat-number">15%</span> have legal rights—evictions loom for 85%!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.citiesalliance.org/newsroom/news/cities-alliance-news/slum-upgrading-kenya-what-are-conditions-success" target="_blank">Cities Alliance (Feb 2021)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">🏘️</div>
+                        <div>Mukuru: 400,000+ residents with ZERO legal protection<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://www.citiesalliance.org/newsroom/news/cities-alliance-news/slum-upgrading-kenya-what-are-conditions-success" target="_blank">Cities Alliance (Feb 2021)</a></small></div>
+                    </div>
+                    <div class="data-stat">
+                        <div class="data-emoji">📱</div>
+                        <div>Youth GPS mapping PROVES claims—data WINS tenure security!<br><small style="font-size:0.7em;opacity:0.8;font-style:italic;">Source: <a href="https://sdinet.org/tag/mukuru/" target="_blank">SDI Impact Innovation Initiative</a></small></div>
+                    </div>
+                </div>
+
+                <div class="mission-box">
+                    <h3>🎯 YOUR MISSION</h3>
+                    <p>Turn invisible residence into LEGAL RIGHTS through youth mapping!</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                ⭐ DATA RIGHTS • KNOW YOUR CITY ⭐
+            </div>
+
+            <div class="mermaid-section">
+                <h2>🏡 LAND & BELONGING</h2>
+                <div class="subtitle">From Theft to Tenure • Everyone Deserves Home</div>
+                <div class="drag-instruction">💡 Drag the blocks to rearrange them!</div>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph BT
+    A["😡 TENURE INSECURITY<br/>Only 15% Have Rights, Evictions Loom!<br/><i>Land is Ours!</i>"]
+    B["📱 MAP OWNERSHIP<br/>Youth Document Claims<br/><b>PROVE OUR ROOTS!</b>"]
+    C["⚖️ LEGAL FIGHT<br/>Data Wins Titles & Laws<br/>Secure Communities!"]
+    D["✊ PROTECTED HOMES<br/>Legal Rights! No More Fear<br/><i>We Stand Firm!</i>"]
+
+    A -->|Uncover Theft| B
+    B -->|Battle Injustice| C
+    C -->|Victory Land| D
+
+    style A fill:#FF4500,stroke:#000,stroke-width:5px,color:#FFF
+    style B fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style C fill:#FFD700,stroke:#228B22,stroke-width:5px,color:#000
+    style D fill:#228B22,stroke:#000,stroke-width:5px,color:#FFF
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎭 SPEAK OUT</h4>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-emoji">❓</span> <strong>The Ownership Test:</strong> Ask everyone: "Who here legally OWNS the land they live on?" Watch how few hands go up (only 15%). Then ask: "Who has lived in their home for 5+ years? 10+ years? 20+ years?" (Many hands). Feel the disconnect. Discuss: "You've built homes, raised families, created communities—but you have ZERO legal rights. What if youth documented EVERY household's history? Could that become evidence for land rights? What would tenure security mean for your community?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">🚪</span> <strong>The Eviction Trauma:</strong> Suddenly interrupt the session, point at half the room and shout forcefully: "LEFT SIDE—YOU'RE EVICTED RIGHT NOW! No reason given. No compensation. You have ONE HOUR." Feel the shock, anger, helplessness. Then debrief: "This is the reality for 400,000+ people in Mukuru alone. What if youth mapped every eviction, every forced demolition, every developer taking over land? Could that data expose the pattern? Force legal protections?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">📱</span> <strong>The Mapping Power Demo:</strong> Have youth use their phones to GPS-mark imaginary structures around the room. Show coordinates on screen. Explain: "This is what SDI youth did in Mukuru—they mapped 100,561 structures. That DATA proved people lived there. It became EVIDENCE. It won legal recognition." Ask: "What would happen if we mapped YOUR community? Every home, every business, every family history? Could data turn occupancy into ownership?"
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-emoji">💬</span> <strong>From Squatters to Stakeholders:</strong> Challenge the language: "Politicians call us 'squatters' or 'illegal occupants.' But if you've lived somewhere for 20 years, paid rent, built a home, sent your kids to school there—are you illegal, or are the LAWS unjust? What if youth-collected data showed occupancy histories, community investments, social networks? Could we force legal systems to recognize OUR reality? YES."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-title">DATA NEWS LIVE</div>
+        <div class="footer-text">
+            "When youth turn numbers into narratives, communities into cartographers, and statistics into strategies—they don't just report the news. They BECOME the news. They ARE the change."
+        </div>
+        <div class="footer-cta">
+            INFORMATION IS POWER • UNITY! OUR STRENGTH • EVERY STREET MATTERS
+        </div>
+        <div style="text-align:center; margin-top:30px; font-size:14px; opacity:0.8; font-style:italic;">
+            Data Rights Are Human Rights
+        </div>
+    </footer>
+
+</body>
+</html>
