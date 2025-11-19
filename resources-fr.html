@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque de Ressources - 7 Villes, 1 Histoire</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#FFD60A',
+                primaryTextColor: '#2a2a2a',
+                primaryBorderColor: '#228B22',
+                secondaryColor: '#4061AA',
+                tertiaryColor: '#228B22',
+                lineColor: '#BB2522',
+                fontSize: '16px'
+            }
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #BB2522;
+            --blue: #4061AA;
+            --yellow: #FFD60A;
+            --green: #228B22;
+            --cream: #FFF8E7;
+            --grey: #4d4d4d;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: #2a2a2a;
+            line-height: 1.7;
+        }
+
+        .logo-bar {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo-bar img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-bar {
+                gap: 15px;
+                padding: 15px;
+            }
+            .logo-bar img {
+                height: 35px;
+            }
+        }
+
+        .header {
+            background: var(--red);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header-title {
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            color: white;
+            text-shadow: 4px 4px 0px rgba(0,0,0,1);
+        }
+
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: var(--blue);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+            border: 2px solid var(--yellow);
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            background: var(--yellow);
+            color: var(--blue);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px var(--yellow);
+        }
+
+        .diagram-card {
+            background: white;
+            border: 6px solid var(--blue);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: 15px 15px 0px var(--yellow);
+        }
+
+        .diagram-card h3 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .mermaid-container {
+            background: #fafafa;
+            padding: 40px;
+            border-radius: 20px;
+            border: 4px solid var(--grey);
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+
+        .formats-section {
+            background: linear-gradient(135deg, var(--yellow) 0%, var(--cream) 100%);
+            border: 6px solid var(--green);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 15px 15px 0px var(--blue);
+        }
+
+        .format-card {
+            background: white;
+            border: 4px solid var(--blue);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            transition: all 0.3s;
+        }
+
+        .format-card:hover {
+            transform: translateX(10px);
+            box-shadow: 10px 10px 0px var(--red);
+        }
+
+        .format-card h4 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 15px;
+        }
+
+        .format-rating {
+            font-size: clamp(28px, 5vw, 40px);
+            margin-bottom: 15px;
+        }
+
+        .format-desc {
+            font-size: clamp(16px, 2.5vw, 20px);
+            line-height: 1.8;
+        }
+
+        .support-section {
+            background: white;
+            border: 6px solid var(--red);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 15px 15px 0px var(--green);
+        }
+
+        .timeline-box {
+            background: var(--cream);
+            border-left: 8px solid var(--blue);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .timeline-box h4 {
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 900;
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 2cm;
+            }
+
+            body {
+                background: white;
+                color: black;
+                font-size: 10pt;
+            }
+
+            .logo-bar, .nav-bar {
+                position: static;
+            }
+
+            .header {
+                background: white !important;
+                color: black !important;
+                border-bottom: 3px solid black;
+            }
+
+            .header-title {
+                color: black !important;
+                text-shadow: none !important;
+            }
+
+            .diagram-card, .formats-section, .support-section {
+                page-break-inside: avoid;
+                border: 2px solid black !important;
+                background: white !important;
+                box-shadow: none !important;
+            }
+
+            .mermaid-container {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-bar">
+        <img src="Logos/KYC-white.png" alt="Logo KYC" style="background: #2a2a2a; padding: 10px; border-radius: 8px;" onerror="this.style.display='none'">
+        <img src="Logos/logo%20black.png" alt="Logo SDI" onerror="this.style.display='none'">
+        <img src="Logos/logo_KYCTV@2x.png" alt="Logo KYC.TV" onerror="this.style.display='none'">
+    </div>
+    <div class="header">
+        <div class="header-title">BIBLIOTHÈQUE DE RESSOURCES</div>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">🏠 Accueil</a>
+        <a href="#diagrams" class="nav-link">📊 Cadres Visuels</a>
+        <a href="#formats" class="nav-link">🎨 Formats Créatifs</a>
+        <a href="#support" class="nav-link">🤝 Soutien Post-Atelier</a>
+    </nav>
+
+    <div class="container">
+        <!-- VISUAL FRAMEWORKS -->
+        <section id="diagrams">
+            <h2 class="section-title">📊 Cadres Visuels</h2>
+
+            <div class="diagram-card">
+                <h3>Modèle d'Unité "7 Villes, 1 Histoire"</h3>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph TB
+    A["🌍 7 VILLES"] --> B["LUTTES PARTAGÉES"]
+    A --> C["CONTEXTES DIFFÉRENTS"]
+    A --> D["SOLUTIONS COLLECTIVES"]
+
+    B --> E["⭐ UNE HISTOIRE<br/>PANAFRICAINE"]
+    C --> E
+    D --> E
+
+    B1["Pénalité de la Pauvreté"] --> B
+    B2["Barrières de Genre"] --> B
+    B3["Travail Invisible"] --> B
+
+    C1["Contexte Dakar"] --> C
+    C2["Contexte Kampala"] --> C
+    C3["Contexte Lilongwe"] --> C
+
+    D1["Cartographie Jeunes"] --> D
+    D2["Collecte de Données"] --> D
+    D3["Médias Créatifs"] --> D
+
+    style E fill:#FFD60A,stroke:#000,stroke-width:6px,color:#000
+    style A fill:#4061AA,stroke:#000,stroke-width:4px,color:#fff
+    style B fill:#BB2522,stroke:#000,stroke-width:4px,color:#fff
+    style C fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+    style D fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+                    </div>
+                </div>
+            </div>
+
+            <div class="diagram-card">
+                <h3>Intégration des Trois Types de Données</h3>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+flowchart LR
+    subgraph Process["🔄 PROCESSUS D'ENQUÊTE"]
+        A["📊 DONNÉES CONCRÈTES<br/>Statistiques de<br/>recherche"]
+        B["💬 DONNÉES VÉCUES<br/>Expériences<br/>communautaires"]
+        C["❓ DONNÉES MANQUANTES<br/>Lacunes à<br/>investiguer"]
+    end
+
+    A --> D["🎬 NARRATION<br/>CRÉATIVE"]
+    B --> D
+    C --> D
+
+    D --> E["📢 PLAIDOYER<br/>CONVAINCANT"]
+    E --> F["✊ CHANGEMENT<br/>SOCIAL"]
+
+    style A fill:#4061AA,stroke:#000,stroke-width:4px,color:#fff
+    style B fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+    style C fill:#BB2522,stroke:#000,stroke-width:4px,color:#fff
+    style D fill:#FFD60A,stroke:#000,stroke-width:5px,color:#000
+    style E fill:#FFF,stroke:#4061AA,stroke-width:4px
+    style F fill:#228B22,stroke:#000,stroke-width:5px,color:#fff
+                    </div>
+                </div>
+            </div>
+
+            <div class="diagram-card">
+                <h3>Structure du Réseau Post-Atelier</h3>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+graph TB
+    Main["🌍 RÉSEAU 7 VILLES<br/>Tous les 16 Participants"]
+
+    Main --> WA["🌍 Pod Afrique de l'Ouest<br/>Sénégal, Sierra Leone, Ghana"]
+    Main --> EA["🌍 Pod Afrique de l'Est<br/>Kenya, Ouganda"]
+    Main --> SA["🌍 Pod Afrique Australe<br/>Zambie, Malawi"]
+
+    Main --> Exp["🎯 4 Spécialistes Rotatifs<br/>Médias, Données, Cartographie, LME"]
+
+    WA --> Cross1["🔗 Enquêtes<br/>Inter-Villes"]
+    EA --> Cross1
+    SA --> Cross1
+
+    Cross1 --> KYC["📺 KYC.TV<br/>Partage d'Histoires"]
+
+    style Main fill:#FFD60A,stroke:#000,stroke-width:6px,color:#000
+    style WA fill:#BB2522,stroke:#000,stroke-width:4px,color:#fff
+    style EA fill:#4061AA,stroke:#000,stroke-width:4px,color:#fff
+    style SA fill:#228B22,stroke:#000,stroke-width:4px,color:#fff
+    style Exp fill:#FFF,stroke:#228B22,stroke-width:4px
+    style Cross1 fill:#FFD60A,stroke:#4061AA,stroke-width:4px,color:#000
+    style KYC fill:#000,stroke:#FFD60A,stroke-width:4px,color:#FFD60A
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATIVE FORMATS MENU -->
+        <section class="formats-section" id="formats">
+            <h2 class="section-title" style="text-align: center;">🎨 Menu des Formats Créatifs (Choisissez UN Principal pour la Vitrine)</h2>
+            <p style="font-size: clamp(18px, 3vw, 24px); text-align: center; margin-bottom: 40px; font-style: italic;">
+                Ces formats à fort impact exploitent les Données Vécues et le contexte culturel pour transformer l'enquête de données en plaidoyer.
+            </p>
+
+            <div class="format-card">
+                <div class="format-rating">⭐ Plaidoyer à Fort Impact</div>
+                <h4>1. Insert Nouvelles : Niveau Rue & Analyse Expert</h4>
+                <div class="format-desc">
+                    Un segment d'actualités mis en scène (4-5 min) avec un présentateur (introduction de Données Concrètes), des reporters de terrain (interviews dramatiques de Données Vécues de chaque ville) et un expert (proposition de politique de Données Manquantes).
+                </div>
+            </div>
+
+            <div class="format-card">
+                <div class="format-rating">⭐ Unité Culturelle & Émotion</div>
+                <h4>2. Performance : Chanson, Poésie ou Danse</h4>
+                <div class="format-desc">
+                    Une pièce artistique unifiée (3-4 min) utilisant la chanson, la poésie ou la chorégraphie. Doit comporter un refrain/motif commun (Unité) et des éléments culturels uniques de chaque ville (Diversité). La performance doit incorporer visuellement ou lyriquement un fait de Données Concrètes ou une question de Données Manquantes.
+                </div>
+            </div>
+
+            <div class="format-card">
+                <div class="format-rating">⭐ Conflit & Résolution</div>
+                <h4>3. Courte Pièce Fictionnelle (Dramatisation)</h4>
+                <div class="format-desc">
+                    Un sketch théâtral (5-6 min) explorant le problème à travers le personnage et le conflit. Il doit personnifier le conflit (activiste vs bureaucratie) et utiliser l'apprentissage partagé inter-villes comme point tournant ou solution.
+                </div>
+            </div>
+        </section>
+
+        <!-- POST-WORKSHOP SUPPORT -->
+        <section class="support-section" id="support">
+            <h2 class="section-title">🤝 Calendrier du Soutien Post-Atelier</h2>
+
+            <div class="timeline-box">
+                <h4>📦 Semaine 1 : Paquet de Bienvenue</h4>
+                <p>Paquet Email/WhatsApp avec photos, liste de contacts, contacts de spécialistes, lien de groupe WhatsApp, directives KYC.TV, boîte à outils d'enquête</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>💬 Semaine 2 : Premier Soutien</h4>
+                <p>Soutien de spécialiste personnalisé + Points de contrôle régionaux (pods Afrique de l'Ouest, Afrique de l'Est, Afrique Australe se rencontrent séparément)</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>📸 Semaine 4 : Contrôle de Progrès</h4>
+                <p>Premier rapport de progrès (photo + 3 phrases) partagé dans les groupes WhatsApp. Célébrez les premières victoires!</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>📹 Semaine 6 : Appels Régionaux</h4>
+                <p>Appels vidéo régionaux avec spécialistes. Résoudre les défis, partager les leçons</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>🎬 Semaine 8 : Premières Soumissions</h4>
+                <p>Soumissions d'histoires à KYC.TV. Vitrine spéciale "Réseau 7 Villes" présentant le travail de tous les participants</p>
+            </div>
+
+            <div class="timeline-box">
+                <h4>🌍 Semaine 12 : Réunion Virtuelle</h4>
+                <p>Tous les 16 participants se réunissent virtuellement. Partagent les enquêtes terminées, célèbrent l'impact, planifient les prochaines collaborations</p>
+            </div>
+
+            <h3 style="margin-top: 50px; margin-bottom: 25px; font-size: clamp(28px, 5vw, 40px); color: var(--red);">Indicateurs de Succès</h3>
+
+            <div style="background: var(--cream); padding: 30px; border-radius: 15px; margin-top: 20px;">
+                <p style="font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin-bottom: 15px;">🎯 Court terme (60 jours) :</p>
+                <ul style="margin-left: 30px; font-size: clamp(16px, 2.5vw, 20px); line-height: 2;">
+                    <li>5/7 pays rapportent des progrès (objectif d'engagement de 70%)</li>
+                    <li>Au moins 2 collaborations inter-villes initiées</li>
+                    <li>Au moins 3 histoires soumises à KYC.TV</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--cream); padding: 30px; border-radius: 15px; margin-top: 20px;">
+                <p style="font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin-bottom: 15px;">🎯 Moyen terme (6 mois) :</p>
+                <ul style="margin-left: 30px; font-size: clamp(16px, 2.5vw, 20px); line-height: 2;">
+                    <li>Au moins 5 pays terminent les enquêtes</li>
+                    <li>Collecte de données inter-villes en cours</li>
+                    <li>Histoires utilisées pour le plaidoyer dans les villes d'origine</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--cream); padding: 30px; border-radius: 15px; margin-top: 20px;">
+                <p style="font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin-bottom: 15px;">🎯 Long terme (1 an+) :</p>
+                <ul style="margin-left: 30px; font-size: clamp(16px, 2.5vw, 20px); line-height: 2;">
+                    <li>Le "Réseau 7 Villes" devient une cohorte de jeunes SDI reconnue</li>
+                    <li>Modèle répliqué avec de nouvelles villes</li>
+                    <li>Changements de politique attribuables au travail du réseau</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
