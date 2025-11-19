@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 Cities Issues Mind Map - How Everything Connects</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#FFD60A',
+                primaryTextColor: '#2a2a2a',
+                primaryBorderColor: '#228B22',
+                secondaryColor: '#1D3557',
+                tertiaryColor: '#228B22',
+                lineColor: '#E63946',
+                fontSize: '16px',
+                fontFamily: 'Source Sans 3, Source Sans Pro, sans-serif'
+            },
+            mindmap: {
+                padding: 20,
+                maxNodeWidth: 300
+            }
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #BB2522;
+            --blue: #4061AA;
+            --yellow: #FFD60A;
+            --grey: #4d4d4d;
+            --cream: #FFF8E7;
+            --green: #228B22;
+            --rasta-red: #BB2522;
+            --rasta-yellow: #FFC700;
+            --rasta-green: #009900;
+        }
+
+        body {
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #ffffff 100%);
+            color: #2a2a2a;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        .logo-bar {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1001;
+        }
+
+        .logo-bar img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-bar {
+                gap: 15px;
+                padding: 15px;
+            }
+            .logo-bar img {
+                height: 35px;
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--rasta-red) 0%, var(--blue) 50%, var(--rasta-green) 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 10px solid var(--yellow);
+        }
+
+        .header-title {
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            color: white;
+            text-shadow: 5px 5px 0px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .header-subtitle {
+            font-size: clamp(24px, 4vw, 40px);
+            color: var(--yellow);
+            font-weight: 700;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+        }
+
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: var(--blue);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+            border: 2px solid var(--yellow);
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            background: var(--yellow);
+            color: var(--blue);
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 2000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .intro-section {
+            background: white;
+            border: 8px solid var(--blue);
+            border-radius: 30px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: 20px 20px 0px var(--yellow);
+        }
+
+        .intro-section h2 {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 0px var(--yellow);
+        }
+
+        .intro-section p {
+            font-size: clamp(18px, 3vw, 28px);
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .diagram-container {
+            background: white;
+            border: 12px solid var(--green);
+            border-radius: 40px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            box-shadow: 25px 25px 0px var(--red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diagram-container::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 6px dashed var(--yellow);
+            border-radius: 30px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .diagram-title {
+            font-size: clamp(50px, 8vw, 80px);
+            font-weight: 900;
+            color: var(--blue);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0px var(--yellow);
+            position: relative;
+            z-index: 1;
+        }
+
+        .diagram-subtitle {
+            font-size: clamp(20px, 3vw, 32px);
+            color: var(--red);
+            text-align: center;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mermaid-wrapper {
+            background: #fafafa;
+            padding: 50px 30px;
+            border-radius: 25px;
+            border: 6px solid var(--grey);
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            overflow: auto;
+        }
+
+        .mermaid {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mermaid svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        .legend-section {
+            background: linear-gradient(135deg, var(--yellow) 0%, var(--cream) 100%);
+            border: 8px solid var(--green);
+            border-radius: 30px;
+            padding: 50px;
+            margin-top: 60px;
+            box-shadow: 20px 20px 0px var(--blue);
+        }
+
+        .legend-section h3 {
+            font-size: clamp(36px, 6vw, 52px);
+            font-weight: 900;
+            color: var(--blue);
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px white;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .legend-item {
+            background: white;
+            border: 5px solid var(--blue);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 10px 10px 0px var(--red);
+        }
+
+        .legend-emoji {
+            font-size: 50px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .legend-title {
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .legend-desc {
+            font-size: clamp(14px, 2vw, 18px);
+            line-height: 1.6;
+            color: var(--grey);
+        }
+
+        .key-insights {
+            background: white;
+            border: 8px solid var(--red);
+            border-radius: 30px;
+            padding: 50px;
+            margin-top: 60px;
+            box-shadow: 20px 20px 0px var(--green);
+        }
+
+        .key-insights h3 {
+            font-size: clamp(40px, 7vw, 60px);
+            font-weight: 900;
+            color: var(--blue);
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px var(--yellow);
+        }
+
+        .insight-box {
+            background: var(--cream);
+            border-left: 8px solid var(--green);
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 15px;
+            font-size: clamp(16px, 2.5vw, 22px);
+            line-height: 1.8;
+            transition: all 0.3s;
+        }
+
+        .insight-box:hover {
+            background: var(--yellow);
+            transform: translateX(10px);
+        }
+
+        .insight-box strong {
+            color: var(--red);
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .diagram-container {
+                padding: 40px 20px;
+            }
+
+            .mermaid-wrapper {
+                padding: 30px 15px;
+                min-height: 600px;
+            }
+
+            .legend-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            @page {
+                size: A3 landscape;
+                margin: 1cm;
+            }
+
+            body {
+                background: white;
+            }
+
+            .logo-bar, .nav-bar {
+                position: static;
+            }
+
+            .diagram-container, .legend-section, .key-insights {
+                page-break-inside: avoid;
+                border: 3px solid black !important;
+                box-shadow: none !important;
+            }
+
+            .header {
+                background: white !important;
+                color: black !important;
+                border-bottom: 3px solid black;
+            }
+
+            .header-title, .header-subtitle {
+                color: black !important;
+                text-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-bar">
+        <img src="Logos/KYC-white.png" alt="KYC Logo" style="background: #2a2a2a; padding: 10px; border-radius: 8px;" onerror="this.style.display='none'">
+        <img src="Logos/logo%20black.png" alt="SDI Logo" onerror="this.style.display='none'">
+        <img src="Logos/logo_KYCTV@2x.png" alt="KYC.TV Logo" onerror="this.style.display='none'">
+    </div>
+
+    <div class="header">
+        <div class="header-title">🌍 ISSUES MIND MAP</div>
+        <div class="header-subtitle">How Everything Connects • 7 Cities, 1 Story</div>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">🏠 Home</a>
+        <a href="news-segment-cards-final.html" class="nav-link">📰 Data News Cards</a>
+        <a href="resources.html" class="nav-link">📚 Resources</a>
+        <a href="#diagram" class="nav-link">🗺️ Mind Map</a>
+        <a href="#insights" class="nav-link">💡 Key Insights</a>
+    </nav>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>🔗 The Interconnected Crisis</h2>
+            <p>
+                Urban poverty isn't just ONE problem—it's a web of interconnected issues that trap communities in cycles of disadvantage.
+                This mind map reveals how the <strong>8 critical issues</strong> facing informal settlements aren't isolated challenges,
+                but deeply connected systemic problems that require <strong>integrated solutions</strong>.
+            </p>
+            <p style="margin-top: 20px; font-style: italic; color: var(--red); font-weight: 700;">
+                💡 Understanding these connections is the first step toward breaking the cycle.
+            </p>
+        </div>
+
+        <div class="diagram-container" id="diagram">
+            <div class="diagram-title">🗺️ THE BIG PICTURE</div>
+            <div class="diagram-subtitle">8 Issues • Infinite Connections • One Solution: Youth Data Power</div>
+
+            <div class="mermaid-wrapper">
+                <div class="mermaid">
+mindmap
+  root((🌍 7 CITIES<br/>1 STORY<br/><br/>URBAN<br/>POVERTY<br/>CRISIS))
+
+    ECONOMIC[💰 ECONOMIC TRAPS]
+      poverty{{💰 POVERTY<br/>PENALTY<br/>172% more<br/>for water}}
+        poverty_impact[Drains<br/>family income]
+        poverty_cycle[Creates debt<br/>cycles]
+
+      jobs{{💣 JOBS<br/>BOMB<br/>100M more<br/>youth by 2030}}
+        jobs_gap[15M jobs needed<br/>5M created]
+        jobs_informal[95% work<br/>informally]
+
+      invisible{{👻 INVISIBLE<br/>WORKFORCE<br/>85% jobs<br/>unofficial}}
+        invisible_contrib[Productive but<br/>unrecognized]
+        invisible_rights[No legal<br/>protections]
+
+      diploma{{🎓 DIPLOMA<br/>TRAP<br/>67% unemployed<br/>despite education}}
+        diploma_mismatch[Skills don't<br/>match market]
+        diploma_waste[Talent<br/>wasted]
+
+    SOCIAL[👥 SOCIAL BARRIERS]
+      women{{👊 YOUNG<br/>WOMEN<br/>77% in<br/>vulnerable work}}
+        women_double[Double<br/>discrimination]
+        women_power[2x impact<br/>when supported]
+
+      gender[Gender<br/>inequality<br/>compounds<br/>all issues]
+        gender_access[Less access<br/>to resources]
+        gender_violence[Safety<br/>concerns]
+
+    SPATIAL[🏘️ SPATIAL INJUSTICE]
+      land{{🏡 LAND<br/>RIGHTS<br/>Only 15%<br/>have legal title}}
+        land_evict[Constant threat<br/>of eviction]
+        land_invest[Can't invest<br/>in homes]
+
+      landlords{{🏘️ LANDLORD<br/>EXPLOITATION<br/>60% on 5%<br/>of land}}
+        landlord_profit[Slums are<br/>profitable]
+        landlord_growth[12% annual<br/>growth]
+
+      sanitation{{🚽 SANITATION<br/>CRISIS<br/>1 toilet per<br/>103 people}}
+        sanitation_health[Annual cholera<br/>outbreaks]
+        sanitation_dignity[2hr waits<br/>lose dignity]
+
+    SOLUTION[✊ SOLUTION: DATA POWER]
+      youth_mapping[📱 Youth GPS<br/>Mapping]
+        youth_prove[Prove we<br/>exist]
+        youth_claim[Document<br/>claims]
+
+      community_data[📊 Community<br/>Data Collection]
+        community_gaps[Expose<br/>gaps]
+        community_patterns[Reveal<br/>patterns]
+
+      creative_media[🎬 Creative<br/>Storytelling]
+        creative_voices[Amplify<br/>voices]
+        creative_change[Demand<br/>change]
+
+      policy_advocacy[📢 Data-Driven<br/>Advocacy]
+        policy_negotiate[Negotiate<br/>better deals]
+        policy_win[Win legal<br/>rights]
+                </div>
+            </div>
+        </div>
+
+        <div class="legend-section">
+            <h3>🔑 Understanding the Issues</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <span class="legend-emoji">💰</span>
+                    <div class="legend-title">Poverty Penalty</div>
+                    <div class="legend-desc">The poor pay 172% more for water, 5x more for electricity. This drains family income and perpetuates poverty cycles.</div>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-emoji">👊</span>
+                    <div class="legend-title">Young Women</div>
+                    <div class="legend-desc">Face double discrimination (age + gender), yet deliver 2x impact when given equal access. 77% stuck in vulnerable work.</div>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-emoji">👻</span>
+                    <div class="legend-title">Invisible Workforce</div>
+                    <div class="legend-desc">85% of African jobs are "informal"—productive but unrecognized. 95% of working youth are invisible to systems.</div>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-emoji">🚽</span>
+                    <div class="legend-title">Sanitation Crisis</div>
+                    <div class="legend-desc">1 toilet for 103 people in Mukuru. Leads to annual cholera outbreaks and 2-hour waits that steal dignity and work time.</div>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-emoji">🏘️</span>
+                    <div class="legend-title">Landlord Exploitation</div>
+                    <div class="legend-desc">60% of Nairobi lives on 5% of land. Slums grow 12% annually because poverty is profitable for landowners.</div>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-emoji">💣</span>
+                    <div class="legend-title">Jobs Bomb</div>
+                    <div class="legend-desc">100 million more youth by 2030. Need 15M jobs/year but only creating 5M. Demographic dividend or disaster?</div>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-emoji">🎓</span>
+                    <div class="legend-title">Diploma Trap</div>
+                    <div class="legend-desc">67% youth unemployment despite most educated generation. 1M enter market annually with no relevant skills.</div>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-emoji">🏡</span>
+                    <div class="legend-title">Land Rights</div>
+                    <div class="legend-desc">Only 15% have legal rights. 400,000+ in Mukuru face constant eviction threat. Can't invest in homes or futures.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-insights" id="insights">
+            <h3>💡 Key Connections</h3>
+
+            <div class="insight-box">
+                <strong>🔗 Everything Connects to Land Rights:</strong> Without legal tenure, families can't invest in infrastructure (sanitation), can't prove residence (for jobs/education), and remain vulnerable to landlord exploitation. Land security is foundational.
+            </div>
+
+            <div class="insight-box">
+                <strong>🔗 The Poverty Penalty Multiplies Other Issues:</strong> Paying 172% more for water means less money for education, making the diploma trap worse. High utility costs force people into informal work to survive, making them invisible to systems.
+            </div>
+
+            <div class="insight-box">
+                <strong>🔗 Young Women Face Every Issue Intensified:</strong> Gender discrimination compounds every challenge—harder to get formal jobs, more vulnerable to landlord exploitation, face greater safety risks with poor sanitation, excluded from land ownership.
+            </div>
+
+            <div class="insight-box">
+                <strong>🔗 The Jobs-Education Disconnect:</strong> Schools teach theory while 85% of work is informal. The diploma trap feeds into the invisible workforce—educated youth doing unrecognized work because formal jobs don't exist.
+            </div>
+
+            <div class="insight-box">
+                <strong>🔗 Sanitation = Economic Issue:</strong> 2-hour toilet waits mean missing work, losing income, staying poor. Annual cholera outbreaks drain family savings on healthcare. It's not just dignity—it's economic survival.
+            </div>
+
+            <div class="insight-box">
+                <strong>🔗 Landlords Profit From All Failures:</strong> The worse conditions get (no sanitation, no rights, overcrowding), the more profitable slums become. Landlords have no incentive to improve because scarcity drives up rents.
+            </div>
+
+            <div class="insight-box">
+                <strong>✊ The Solution: Youth-Led Data Collection:</strong> GPS mapping proves land claims. Community surveys expose the poverty penalty. Documenting the invisible economy forces recognition. Creative storytelling turns numbers into advocacy. Data is the weapon that breaks the cycle.
+            </div>
+
+            <div class="insight-box">
+                <strong>🌍 Why "7 Cities, 1 Story" Matters:</strong> These same patterns repeat across Dakar, Freetown, Accra, Kampala, Nairobi, Lusaka, and Lilongwe. Cross-city data proves this isn't isolated—it's systemic. Shared evidence creates collective power for change.
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 80px 0; padding: 60px 40px; background: linear-gradient(135deg, var(--rasta-red) 0%, var(--blue) 50%, var(--rasta-green) 100%); border-radius: 30px; color: white;">
+            <div style="font-size: clamp(40px, 7vw, 72px); font-weight: 900; margin-bottom: 30px; text-shadow: 4px 4px 0px rgba(0,0,0,0.5);">
+                📊 DATA NEWS LIVE
+            </div>
+            <div style="font-size: clamp(24px, 4vw, 40px); font-weight: 700; margin-bottom: 20px; color: var(--yellow); text-shadow: 3px 3px 0px rgba(0,0,0,0.5);">
+                When Youth Turn Numbers Into Narratives
+            </div>
+            <div style="font-size: clamp(18px, 3vw, 28px); line-height: 1.8; max-width: 1000px; margin: 0 auto;">
+                They don't just report the news. They BECOME the news. They ARE the change.
+            </div>
+            <div style="margin-top: 40px; font-size: clamp(20px, 3vw, 32px); font-weight: 900; color: var(--yellow); text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">
+                INFORMATION IS POWER • UNITY! OUR STRENGTH • EVERY STREET MATTERS
+            </div>
+        </div>
+    </div>
+</body>
+</html>
